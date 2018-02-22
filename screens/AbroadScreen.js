@@ -18,7 +18,7 @@ export default class AbroadScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#6b686d',
     alignItems: 'center',
     justifyContent: 'center',
   },

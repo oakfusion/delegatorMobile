@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_abc_list_selector_disabled_holo_light.9.png.flat",
-        "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable-mdpi\\abc_list_selector_disabled_holo_light.9.png"
-    },
-    {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_dev_loading_view.xml.flat",
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\react-native-0.52.0.aar\\0b4846fa6fa6dc80566374f4210926c0\\res\\layout\\dev_loading_view.xml"
+    },
+    {
+        "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_abc_list_selector_disabled_holo_light.9.png.flat",
+        "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable-mdpi\\abc_list_selector_disabled_holo_light.9.png"
     },
     {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim_catalyst_push_up_in.xml.flat",
@@ -36,12 +36,12 @@
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable\\abc_list_selector_background_transition_holo_dark.xml"
     },
     {
-        "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_abc_ic_commit_search_api_mtrl_alpha.png.flat",
-        "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable-xxhdpi\\abc_ic_commit_search_api_mtrl_alpha.png"
-    },
-    {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_abc_textfield_activated_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable-mdpi\\abc_textfield_activated_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_abc_ic_commit_search_api_mtrl_alpha.png.flat",
+        "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable-xxhdpi\\abc_ic_commit_search_api_mtrl_alpha.png"
     },
     {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_abc_btn_check_to_on_mtrl_015.png.flat",

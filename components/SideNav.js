@@ -22,30 +22,29 @@ class SideNav extends Component {
     const currentItem = this.props.activeItemKey;
 
     return (
-        <View style={styles.container}>
-            <ScrollView>
-                <View style={styles.topSection}>
-                  <Text style={styles.topSectionText}>DELEGATOR</Text>
-                </View>
-                <View>
-                  {this.props.items.map((item, key) => {
-                    return (
-                      <TouchableOpacity 
-                        key={key} 
-                        onPress={this.navigateToScreen(item.routeName)} 
-                        style={[styles.navItemButton, currentItem === item.key ? styles.navItemActiveButton : null]}>
-                          <Icon style={{padding: 10}} name={icons[key]} size={20} color="#fff" />
-                          <Text style={[styles.navItemStyle, currentItem === item.key ? styles.navItemActiveStyle : null]}>{item.key}</Text>
-                      </TouchableOpacity>
-                    )
-                  })}
-                </View>
-            </ScrollView>
+      <View style={styles.container}>
+        <ScrollView>
+          <View style={styles.topSection}>
+            <Text style={styles.topSectionText}>DELEGATOR</Text>
+          </View>
+          <View>
+            {this.props.items.map((item, key) => {
+              return (
+                <TouchableOpacity 
+                  key={key} 
+                  onPress={this.navigateToScreen(item.routeName)} 
+                  style={[styles.navItemButton, currentItem === item.key ? styles.navItemActiveButton : null]}>
+                    <Icon style={{padding: 10}} name={icons[key]} size={20} color="#fff" />
+                    <Text style={[styles.navItemStyle, currentItem === item.key ? styles.navItemActiveStyle : null]}>{item.key}</Text>
+                </TouchableOpacity>
+              )
+            })}
+          </View>
+        </ScrollView>
 
-            <View style={styles.footerContainer}>
-                <Text style={styles.footerContainerText}>&copy; {new Date().getFullYear()} Oakfusion</Text>
-            </View>
-            
+        <View style={styles.footerContainer}>
+          <Text style={styles.footerContainerText}>&copy; {new Date().getFullYear()} Oakfusion</Text>
+        </View>
       </View>
     );
   }
