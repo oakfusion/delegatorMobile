@@ -40,8 +40,8 @@ const StackOptionsFunc = (navigation) => {
 const MainStack = StackNavigator(
   {
     Home:       { screen: HomeScreen, navigationOptions: ({navigation}) => StackOptionsFunc(navigation) },
-    Domestic:   { screen: DomesticScreen, navigationOptions: StackOptions },
-    Abroad:     { screen: AbroadScreen, navigationOptions: StackOptions }
+    Domestic:   { screen: DomesticScreen, navigationOptions: {...StackOptions, title: 'Delegacja krajowa'} },
+    Abroad:     { screen: AbroadScreen, navigationOptions: {...StackOptions, title: 'Delegacja zagraniczna'} }
   }
 )
 
