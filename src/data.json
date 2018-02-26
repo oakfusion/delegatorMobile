@@ -1,0 +1,16 @@
+{
+    "venichles": [
+        { "value": "COMPANIES", "viewValue": "Firmowy" },
+        { "value": "OWN_BELOW_09", "viewValue": "Prywatny samochod (obj. silnika do 0.9l)" },
+        { "value": "OWN_OVER_09", "viewValue": "Prywatny samochod (obj. silnika wopyzej 0.9l)" },
+        { "value": "OWN_MOTOCYCLE", "viewValue": "Prywatny motocykl" },
+        { "value": "OWN_MOTORBIKE", "viewValue": "Prywatny motorower" }
+    ],
+    "countries": [
+        { "value": "AUSTRIA", "viewValue": "Austria" },
+        { "value": "MOLDOVA", "viewValue": "Mołdawia" },
+        { "value": "GERMANY", "viewValue": "Niemcy" },
+        { "value": "GREAT_BRITAIN", "viewValue": "Wielka Brytania" },
+        { "value": "SWITZERLAND", "viewValue": "Szwajcaria" }
+    ]
+}

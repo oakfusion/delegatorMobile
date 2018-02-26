@@ -6,6 +6,21 @@ export default class ContactScreen extends React.Component {
     title: 'Kontakt'
   };
 
+  sendForm () {
+    fetch('https://delegator.oakfusion.pl/mail/contact', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: 'test',
+        email: 'testowy@test.com',
+        content: 'test message'
+      })
+    })
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -18,9 +33,8 @@ export default class ContactScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#6b686d',
     alignItems: 'center',
     justifyContent: 'center',
   },
 });
-
