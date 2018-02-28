@@ -10,8 +10,15 @@ const defaultInputProps = {
 }
 
 export default class PickerField extends Component {
-  state = {
-    selected: this.props.items[0].value
+  constructor (props) {
+    super(props);
+    this.state = {
+      selected: this.props.items[0].value
+    }
+  }
+
+  componentDidUpdate () {
+    this.props.handleChange(this.state.selected);
   }
 
   render() {

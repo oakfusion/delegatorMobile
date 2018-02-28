@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import DatePicker from 'react-native-datepicker';
-import { StyleSheet, View, Text, Keyboard } from 'react-native';
+import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import styled from 'styled-components';
+
+const Container = styled.View`
+  width: 100%;
+`;
 
 export default class DatePickerField extends Component {
-  constructor(props){
-    super(props)
-    this.state = { date:"" }
-  }
-
   render() {
+    console.log(this);
     return (
-      <View style={[styles.container, this.props.style]}>
+      <Container>
         <DatePicker
           style={{width: '100%', paddingTop: 0}}
-          date={this.state.date}
+          date={this.props.date}
           mode="datetime"
           androidMode="spinner"
           format="YYYY-MM-DD h:mm"
@@ -39,15 +40,9 @@ export default class DatePickerField extends Component {
               fontSize: 16
             }
           }}
-          onDateChange={(date) => {this.setState({date: date})}}
+          onDateChange={this.props.handleChange.bind(this)}
         />
-      </View>
+      </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%'
-  }
-});
