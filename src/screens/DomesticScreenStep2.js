@@ -40,23 +40,26 @@ export default class DomesticScreenStep2 extends Component {
     }
 
     render() {
+        const state = this.props.screenProps.state;
+        const actions = this.props.screenProps.actions;
+
         return (
             <Container>
                 <ScrollView>
                     <FieldHolder small>
-                        <TextField {...defaultInputProps} label='Adres email' />
+                        <TextField {...defaultInputProps} label='Adres email' value={state.email} onChangeText={ value => actions.setEmail(value) }/>
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <TextField {...defaultInputProps} label='Imię' />
+                        <TextField {...defaultInputProps} label='Imię' value={state.name} onChangeText={ value => actions.setName(value) }/>
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <TextField {...defaultInputProps} label='Nazwisko' />
+                        <TextField {...defaultInputProps} label='Nazwisko' value={state.surname} onChangeText={ value => actions.setSurname(value) }/>
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <TextField {...defaultInputProps} label='Stanowisko' />
+                        <TextField {...defaultInputProps} label='Stanowisko' value={state.position} onChangeText={ value => actions.setPosition(value) }/>
                     </FieldHolder>
 
                     <FieldHolder small>
@@ -65,6 +68,8 @@ export default class DomesticScreenStep2 extends Component {
                             labelStyle={{color: '#fff'}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                             uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
+                            onChange={ value => actions.setAlimentationProvided(value.checked)}
+                            checked={state.alimentationProvided}
                         />
                     </FieldHolder>
 
@@ -74,6 +79,8 @@ export default class DomesticScreenStep2 extends Component {
                             labelStyle={{color: '#fff'}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                             uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
+                            onChange={ value => actions.setAccomodationProvided(value.checked)}
+                            checked={state.accommodationProvided}
                         />
                     </FieldHolder>
 
@@ -83,6 +90,8 @@ export default class DomesticScreenStep2 extends Component {
                             labelStyle={{color: '#fff'}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                             uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
+                            onChange={ value => actions.setRegulaminAccept(value.checked)}
+                            checked={state.regulaminAccepted}
                         />
                     </FieldHolder>
 
@@ -95,7 +104,7 @@ export default class DomesticScreenStep2 extends Component {
                     </FieldHolder>
                 </ScrollView>
 
-                <DomesticMore visibility={this.state.modalVisible} handleClose={() => this.closeModal()}/>
+                <DomesticMore state={state} actions={actions} visibility={this.state.modalVisible} handleClose={() => this.closeModal()}/>
             </Container>
         );
     }

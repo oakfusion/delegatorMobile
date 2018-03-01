@@ -1,6 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, Picker, TextInput } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
+import styled from 'styled-components';
+
+const Container = styled.View`
+  margin-horizontal: 0
+`;
 
 const defaultInputProps = {
   baseColor: "#c9c9c9",
@@ -9,42 +14,27 @@ const defaultInputProps = {
   labelHeight: 20
 }
 
-export default class PickerField extends Component {
-  constructor (props) {
-    super(props);
-    this.state = {
-      selected: this.props.items[0].value
+export default PickerField = (props) => (
+  <Container>
+    <Picker
+      style={{color: '#fff', borderBottomWidth: 1, borderBottomColor: '#fff'}}
+      selectedValue={props.selected}
+      onValueChange={itemValue => props.handleChange(itemValue)}>
+      {
+        props.items.map((item, key) => <Picker.Item key={key} label={item.viewValue} value={item.value} />)
+      }
+    </Picker>
+
+    {
+      props.hiddenField && props.selected && props.selected !== 'COMPANIES'
+      ? <TextField 
+        {...defaultInputProps}
+        keyboardType="numeric"
+        label='Liczba przejechanych kilometrów' 
+        value={props.inputValue}
+        onChangeText={ value => props.handleInputChange(value) }
+        />
+      : null
     }
-  }
-
-  componentDidUpdate () {
-    this.props.handleChange(this.state.selected);
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Picker
-          style={{color: '#fff', borderBottomWidth: 1, borderBottomColor: '#fff'}}
-          selectedValue={this.state.selected}
-          onValueChange={(itemValue, itemIndex) => this.setState({selected: itemValue})}>
-          {
-            this.props.items.map((item, key) => <Picker.Item key={key} label={item.viewValue} value={item.value} />)
-          }
-        </Picker>
-
-        {
-          this.props.hiddenField && this.state.selected && this.state.selected !== 'COMPANIES'
-          ? <TextField {...defaultInputProps} label='Liczba przejechanych kilometrów' />
-          : null
-        }
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 0
-  },
-});
+  </Container>
+)

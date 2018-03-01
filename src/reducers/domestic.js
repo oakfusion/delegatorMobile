@@ -1,6 +1,8 @@
+
+
 const initialState = {
-    start                       : '',
-    end                         : '',
+    startDate                   : '',
+    endDate                     : '',
     settlementDate              : '',
     domesticAccommodation       : '',
     domesticPublicTransport     : '',
@@ -12,9 +14,10 @@ const initialState = {
     position                    : '',
     city                        : '',
     venichle                    : '',
-    kilometers                  : '',
-    alimentationProvided        : '',
-    accommodationProvided       : '',
+    distance                    : '',
+    alimentationProvided        : false,
+    accommodationProvided       : false,
+    regulaminAccepted           : false,
     domesticAdditionalExpenses  : '',
     email                       : '',
     abroad                      : false
@@ -22,8 +25,8 @@ const initialState = {
   
   export default function domesticState(state = initialState, action) {
     switch (action.type) {
-        case 'SET_START_DATE':              return { ...state, start: action.payload }
-        case 'SET_FINISH_DATE':             return { ...state, end: action.payload }
+        case 'SET_START_DATE':              return { ...state, startDate: action.payload }
+        case 'SET_FINISH_DATE':             return { ...state, endDate: action.payload }
         case 'SET_SETTLEMENT_DATE':         return { ...state, settlementDate: action.payload }
         case 'SET_ACCOMODATION':            return { ...state, domesticAccommodation: action.payload }
         case 'SET_PUBLIC_TRANSPORT':        return { ...state, domesticPublicTransport: action.payload }
@@ -35,9 +38,10 @@ const initialState = {
         case 'SET_POSITION':                return { ...state, position: action.payload }
         case 'SET_CITY':                    return { ...state, city: action.payload }
         case 'SET_VENICHLE':                return { ...state, venichle: action.payload }
-        case 'SET_KILOMETERS':              return { ...state, kilometers: action.payload }
+        case 'SET_DISTANCE':                return { ...state, distance: action.payload }
         case 'SET_ALIMENTATION_PROVIDED':   return { ...state, alimentationProvided: action.payload }
         case 'SET_ACCOMODATION_PROVIDED':   return { ...state, accommodationProvided: action.payload }
+        case 'SET_REGULAMIN_ACCEPT':        return { ...state, regulaminAccepted: action.payload }
         case 'SET_ADDITIONAL_EXPENSES':     return { ...state, domesticAdditionalExpenses: action.payload }
         case 'SET_EMAIL':                   return { ...state, email: action.payload }
         

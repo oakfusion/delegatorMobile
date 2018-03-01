@@ -2,8 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, Image, PixelRatio } from 'react-native';
 import { DrawerNavigator, StackNavigator, NavigationActions } from 'react-navigation';
 
+import DomesticContainer from './src/containers/DomesticContainer';
+
 import HomeScreen from './src/screens/HomeScreen';
-import DomesticScreen from './src/screens/DomesticScreen';
 import AbroadScreen from './src/screens/AbroadScreen';
 import AboutScreen from './src/screens/AboutScreen';
 import ContactScreen from './src/screens/ContactScreen';
@@ -40,7 +41,7 @@ const StackOptionsFunc = (navigation) => {
 const MainStack = StackNavigator(
   {
     Home:           { screen: HomeScreen, navigationOptions: ({navigation}) => StackOptionsFunc(navigation) },
-    Domestic:       { screen: DomesticScreen, navigationOptions: {...StackOptions, title: 'Delegacja krajowa'} },
+    Domestic:       { screen: DomesticContainer, navigationOptions: {...StackOptions, title: 'Delegacja krajowa'} },
     Abroad:         { screen: AbroadScreen, navigationOptions: {...StackOptions, title: 'Delegacja zagraniczna'} }
   }
 )
@@ -65,7 +66,7 @@ export default DrawerNavigator(
     'Rozliczenie delegacji' : { screen: MainStack },
     'O Aplikacji'           : { screen: AboutStack },
     'Kontakt'               : { screen: ContactStack },
-    'Regulamin'             : { screen: RegulationScreen }             
+    'Regulamin'             : { screen: RegulationStack }             
   },{ 
     contentComponent: SideNav,
     drawerBackgroundColor: '#3b3a3e',
