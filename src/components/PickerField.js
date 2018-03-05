@@ -1,39 +1,40 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, Picker, TextInput } from 'react-native';
+import React from 'react';
+import { StyleSheet, Text, View, Picker, TextInput, Alert } from 'react-native';
+import { TextField } from 'react-native-material-textfield';
+import styled from 'styled-components';
 
-export default class PickerField extends Component {
-  state = {
-    selected: this.props.items[0].value
-  }
+const Container = styled.View`
+  margin-horizontal: 0
+`;
 
-  render() {
-    return (
-      <View style={styles.container}>
-        <Picker
-          style={{color: '#fff'}}
-          selectedValue={this.state.selected}
-          onValueChange={(itemValue, itemIndex) => this.setState({selected: itemValue})}>
-          {
-              this.props.items.map((item, key) => <Picker.Item key={key} label={item.viewValue} value={item.value} />)
-          }
-        </Picker>
-
-        {
-            this.state.selected !== 'COMPANIES'
-            ? <TextInput 
-                style={{color: '#fff'}}
-                placeholderTextColor="#c9c9c9"
-                underlineColorAndroid="#fff" 
-                placeholder="Liczba przejechanych kilometrów" />
-            : null
-        }
-      </View>
-    );
-  }
+const defaultInputProps = {
+  baseColor: "#c9c9c9",
+  textColor: "#fff",
+  tintColor: "#ffab40",
+  labelHeight: 20
 }
 
-const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 0
-  },
-});
+export default PickerField = (props) => (
+  <Container>
+    <Picker
+      style={{color: '#fff', borderBottomWidth: 1, borderBottomColor: '#fff'}}
+      selectedValue={props.selected}
+      onValueChange={itemValue => props.handleChange(itemValue)} >
+      {
+        props.items.map((item, key) => <Picker.Item key={key} label={item.viewValue} value={item.value} />)
+      }
+    </Picker>
+
+    {
+      props.hiddenField && props.selected && props.selected !== 'COMPANIES'
+      ? <TextField 
+        {...defaultInputProps}
+        keyboardType="numeric"
+        label='Liczba przejechanych kilometrów' 
+        value={props.inputValue}
+        onChangeText={ value => props.handleInputChange(value) }
+        />
+      : null
+    }
+  </Container>
+)

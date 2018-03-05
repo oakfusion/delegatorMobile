@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { View, ScrollView, TextInput } from 'react-native';
+import { View, ScrollView, TextInput, Alert } from 'react-native';
 import CheckBox from 'react-native-modest-checkbox';
 import FieldHolder from '../components/FieldHolder';
 import styled from 'styled-components';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import { moderateScale } from '../helpers/scaling';
 import Button from '../components/Button';
-import DomesticMore from '../modals/DomesticMore';
-import { TextField } from 'react-native-material-textfield';
+import AbroadMoreDomestic from '../modals/AbroadMoreDomestic';
+import AbroadMoreAbroad from '../modals/AbroadMoreAbroad';
 
 const Container = styled.View`
     flex: 1;
@@ -19,24 +19,25 @@ const RegularTextInput = styled.TextInput`
 `;
 
 const defaultInputProps = {
-    baseColor: "#c9c9c9",
-    textColor: "#fff",
-    tintColor: "#ffab40",
-    labelHeight: 20
+    placeholderTextColor: "#c9c9c9",
+    underlineColorAndroid: "#fff"
 }
 
-export default class DomesticScreenStep2 extends Component {
+export default class AbroadScreenStep3 extends Component {
     constructor(props) {
         super(props);
-        this.state = { modalVisible: false }
+        this.state = { 
+            domesticVisible: false,
+            abroadVisible: false
+         }
     }
 
-    openModal () {
-        this.setState({ modalVisible: true });
+    openModal (modal) {
+        this.setState({ [modal]: true });
     }
     
-    closeModal () {
-        this.setState({ modalVisible: false });
+    closeModal (modal) {
+        this.setState({ [modal]: false });
     }
 
     render() {
@@ -47,25 +48,41 @@ export default class DomesticScreenStep2 extends Component {
             <Container>
                 <ScrollView>
                     <FieldHolder small>
-                        <TextField {...defaultInputProps} label='Adres email' value={state.email} onChangeText={ value => actions.setEmail(value) }/>
+                        <RegularTextInput {...defaultInputProps} 
+                            placeholder="Adres email" 
+                            value={state.email} 
+                            onChangeText={ value => actions.setEmail(value) }
+                        />
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <TextField {...defaultInputProps} label='Imię' value={state.name} onChangeText={ value => actions.setName(value) }/>
+                        <RegularTextInput {...defaultInputProps} 
+                            placeholder="Imię" 
+                            value={state.name} 
+                            onChangeText={ value => actions.setName(value) }
+                        />
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <TextField {...defaultInputProps} label='Nazwisko' value={state.surname} onChangeText={ value => actions.setSurname(value) }/>
+                        <RegularTextInput {...defaultInputProps} 
+                            placeholder="Nazwisko" 
+                            value={state.surname} 
+                            onChangeText={ value => actions.setSurname(value) }
+                        />
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <TextField {...defaultInputProps} label='Stanowisko' value={state.position} onChangeText={ value => actions.setPosition(value) }/>
+                        <RegularTextInput {...defaultInputProps} 
+                            placeholder="Stanowisko" 
+                            value={state.position} 
+                            onChangeText={ value => actions.setPosition(value) }
+                        />
                     </FieldHolder>
 
                     <FieldHolder small>
                         <CheckBox
                             label='Zapewnione całodzienne wyżywienie?'
-                            labelStyle={{color: '#fff'}}
+                            labelStyle={{color: '#fff', fontSize: moderateScale(14)}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                             uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
                             onChange={ value => actions.setAlimentationProvided(value.checked)}
@@ -76,7 +93,7 @@ export default class DomesticScreenStep2 extends Component {
                     <FieldHolder small>
                         <CheckBox
                             label='Zapewniony nocleg?'
-                            labelStyle={{color: '#fff'}}
+                            labelStyle={{color: '#fff', fontSize: moderateScale(14)}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                             uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
                             onChange={ value => actions.setAccomodationProvided(value.checked)}
@@ -87,7 +104,7 @@ export default class DomesticScreenStep2 extends Component {
                     <FieldHolder small>
                         <CheckBox
                             label='Zapoznałem się i akceptuję regulamin*'
-                            labelStyle={{color: '#fff'}}
+                            labelStyle={{color: '#fff', fontSize: moderateScale(14)}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                             uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
                             onChange={ value => actions.setRegulaminAccept(value.checked)}
@@ -96,7 +113,11 @@ export default class DomesticScreenStep2 extends Component {
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <Button dark title="Dodatkowe opcje" onPress={() => this.openModal()}/>
+                        <Button dark title="Dodatkowe opcje części krajowej" onPress={() => this.openModal('domesticVisible')}/>
+                    </FieldHolder>
+
+                    <FieldHolder small>
+                        <Button dark title="Dodatkowe opcje części zagranicznej" onPress={() => this.openModal('abroadVisible')}/>
                     </FieldHolder>
 
                     <FieldHolder small last>
@@ -104,7 +125,8 @@ export default class DomesticScreenStep2 extends Component {
                     </FieldHolder>
                 </ScrollView>
 
-                <DomesticMore state={state} actions={actions} visibility={this.state.modalVisible} handleClose={() => this.closeModal()}/>
+                <AbroadMoreDomestic actions={actions} state={state} visibility={this.state.domesticVisible} handleClose={() => this.closeModal('domesticVisible')}/>
+                <AbroadMoreAbroad actions={actions} state={state} visibility={this.state.abroadVisible} handleClose={() => this.closeModal('abroadVisible')}/>
             </Container>
         );
     }

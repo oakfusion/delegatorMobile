@@ -1,5 +1,6 @@
 {
     "venichles": [
+        { "value": "", "viewValue": "Wybierz pojazd" },
         { "value": "COMPANIES", "viewValue": "Firmowy" },
         { "value": "OWN_BELOW_09", "viewValue": "Prywatny samochod (obj. silnika do 0.9l)" },
         { "value": "OWN_OVER_09", "viewValue": "Prywatny samochod (obj. silnika wopyzej 0.9l)" },
@@ -7,6 +8,7 @@
         { "value": "OWN_MOTORBIKE", "viewValue": "Prywatny motorower" }
     ],
     "countries": [
+        { "value": "", "viewValue": "Wybierz kraj" },
         { "value": "AUSTRIA", "viewValue": "Austria" },
         { "value": "MOLDOVA", "viewValue": "Mołdawia" },
         { "value": "GERMANY", "viewValue": "Niemcy" },

@@ -1,16 +1,20 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
-import { DrawerNavigator, StackNavigator } from 'react-navigation';
-
+import { TouchableOpacity, View } from 'react-native';
+import { DrawerNavigator, StackNavigator, NavigationActions } from 'react-navigation';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import configStore from './src/store/configStore';
+import DomesticContainer from './src/containers/DomesticContainer';
+import AbroadContainer from './src/containers/AbroadContainer';
 import HomeScreen from './src/screens/HomeScreen';
-import DomesticScreen from './src/screens/DomesticScreen';
-import AbroadScreen from './src/screens/AbroadScreen';
 import AboutScreen from './src/screens/AboutScreen';
 import ContactScreen from './src/screens/ContactScreen';
 import RegulationScreen from './src/screens/RegulationScreen';
 import SideNav from './src/components/SideNav';
 
-import Icon from 'react-native-vector-icons/MaterialIcons';
+
+const store = configStore();
 
 const DrawerButton = (props) => {
 	return (
@@ -38,9 +42,9 @@ const StackOptionsFunc = (navigation) => {
 
 const MainStack = StackNavigator(
   {
-    Home:       { screen: HomeScreen, navigationOptions: ({navigation}) => StackOptionsFunc(navigation) },
-    Domestic:   { screen: DomesticScreen, navigationOptions: {...StackOptions, title: 'Delegacja krajowa'} },
-    Abroad:     { screen: AbroadScreen, navigationOptions: {...StackOptions, title: 'Delegacja zagraniczna'} }
+    Home:           { screen: HomeScreen, navigationOptions: ({navigation}) => StackOptionsFunc(navigation) },
+    Domestic:       { screen: DomesticContainer, navigationOptions: {...StackOptions, title: 'Delegacja krajowa'} },
+    Abroad:         { screen: AbroadContainer, navigationOptions: {...StackOptions, title: 'Delegacja zagraniczna'} }
   }
 )
 
@@ -59,7 +63,7 @@ const RegulationStack = StackNavigator(
   { navigationOptions: ({navigation}) => StackOptionsFunc(navigation) }
 )
 
-export default DrawerNavigator(
+const RootNavigator = DrawerNavigator(
   {
     'Rozliczenie delegacji' : { screen: MainStack },
     'O Aplikacji'           : { screen: AboutStack },
@@ -69,4 +73,10 @@ export default DrawerNavigator(
     contentComponent: SideNav,
     drawerBackgroundColor: '#3b3a3e',
   }
+);
+
+export default Root = () => (
+  <Provider store={store}>
+      <RootNavigator />
+  </Provider>
 );

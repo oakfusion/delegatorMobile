@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Text, View, TouchableNativeFeedback, Image, PixelRatio, ScrollView } from 'react-native';
 import { moderateScale, verticalScale } from '../helpers/scaling';
 import styled from 'styled-components';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Button from '../components/Button';
+import FieldHolder from '../components/FieldHolder';
 
 const Container = styled.View`
     flex: 1;
@@ -18,7 +19,7 @@ const ContainerInner = styled.View`
 const IconsContainer = styled.View`
     flex: 1;
     flex-direction: row;
-    margin-vertical: ${PixelRatio.getPixelSizeForLayoutSize(20)};
+    margin-vertical: ${PixelRatio.getPixelSizeForLayoutSize(15)};
     align-content: space-between;
     align-items: center;
 `;
@@ -40,11 +41,7 @@ const ImageIcon = styled.Image`
     resize-mode: contain;
 `;
 
-const ButtonFirst = styled(Button)`
-    margin-bottom: 10;
-`;
-
-export default class HomeScreen extends React.Component {
+export default class HomeScreen extends Component {
     static navigationOptions = {
         title: 'Rozliczenie Delegacji'
     };
@@ -65,11 +62,11 @@ export default class HomeScreen extends React.Component {
                         <View>
                             <RegularText>Rozlicz swoją delegację szybciej niż myślisz.</RegularText>
                             <RegularText>Przytłacza Cię ilość pytań w formularzach? Nie wiesz, jaka wysokość diety Ci przysługuje oraz jak ją poprawnie wyliczyć? Nie szkodzi, zrobimy to za Ciebie. W zależności od Twoich potrzeb, Delegator ograniczy się tylko do niezbędnego minimum wymaganych informacji a na koniec wygeneruje dokument z rozliczeniem Twojej podróży służbowej.</RegularText>
-                            <RegularText>Sprawdź jakie to proste!</RegularText>
+                            <RegularText>Sprawdź jakie to proste! </RegularText>
                         </View>
                         
                         <ButtonsContainer>
-                            <ButtonFirst title="Rozlicz delegację krajową" upper onPress={() => this.props.navigation.navigate('Domestic')} />
+                            <Button title="Rozlicz delegację krajową" upper first onPress={() => this.props.navigation.navigate('Domestic')} />
                             <Button title="Rozlicz delegację zagraniczną" upper onPress={() => this.props.navigation.navigate('Abroad')} />                   
                         </ButtonsContainer>
                     </ContainerInner>
