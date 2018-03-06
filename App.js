@@ -3,9 +3,9 @@ import { StyleSheet, Text, View, Button, TouchableOpacity, Image, PixelRatio } f
 import { DrawerNavigator, StackNavigator, NavigationActions } from 'react-navigation';
 
 import DomesticContainer from './src/containers/DomesticContainer';
+import AbroadContainer from './src/containers/AbroadContainer';
 
 import HomeScreen from './src/screens/HomeScreen';
-import AbroadScreen from './src/screens/AbroadScreen';
 import AboutScreen from './src/screens/AboutScreen';
 import ContactScreen from './src/screens/ContactScreen';
 import RegulationScreen from './src/screens/RegulationScreen';
@@ -42,7 +42,7 @@ const MainStack = StackNavigator(
   {
     Home:           { screen: HomeScreen, navigationOptions: ({navigation}) => StackOptionsFunc(navigation) },
     Domestic:       { screen: DomesticContainer, navigationOptions: {...StackOptions, title: 'Delegacja krajowa'} },
-    Abroad:         { screen: AbroadScreen, navigationOptions: {...StackOptions, title: 'Delegacja zagraniczna'} }
+    Abroad:         { screen: AbroadContainer, navigationOptions: {...StackOptions, title: 'Delegacja zagraniczna'} }
   }
 )
 

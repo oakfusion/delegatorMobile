@@ -37,7 +37,8 @@ export default DomesticScreenStep1 = (props) => {
                     handleChange={actions.setVenichle} 
                     handleInputChange={actions.setDistance}
                     inputValue={state.distance} 
-                    items={data.venichles}/>
+                    items={data.venichles}
+                />
             </FieldHolder>
         </ScrollView>
     </Container>

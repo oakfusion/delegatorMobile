@@ -4,12 +4,15 @@ import styled from 'styled-components';
 
 const Container = styled.View`
   width: 100%;
-  border-color: #777;
   padding-top: 14;
-  padding-bottom: ${props => props.small ? 0 : 14}
   padding-horizontal: 15;
-  borderBottomWidth: ${props => props.border ? 1 : 0}
   margin-bottom: ${props => props.last ? 14 : 0}
+`;
+
+const ContainerInner = styled.View`
+  margin-bottom: ${props => props.small ? 0 : 14}
+  border-color: #ccc;
+  borderBottomWidth: ${props => props.border ? 1 : 0}
 `;
 
 const Placeholder = styled.Text`
@@ -19,8 +22,10 @@ const Placeholder = styled.Text`
 
 const FieldHolder = (props) => (
     <Container {...props}>
+      <ContainerInner {...props}>
         <Placeholder>{props.placeholder}</Placeholder>
         {props.children}
+      </ContainerInner>
     </Container>
 )
 

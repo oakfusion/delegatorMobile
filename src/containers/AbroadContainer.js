@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
-import { StackNavigator, TabNavigator, TabBarBottom } from 'react-navigation';
+import React from 'react';
+import { TabNavigator, TabBarBottom } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import * as abroadActions from '../actions/abroadActions';
 
-import AbroadScreenStep1 from './AbroadScreenStep1';
-import AbroadScreenStep2 from './AbroadScreenStep2';
-import AbroadScreenStep3 from './AbroadScreenStep3';
+import AbroadScreenStep1 from '../screens/AbroadScreenStep1';
+import AbroadScreenStep2 from '../screens/AbroadScreenStep2';
+import AbroadScreenStep3 from '../screens/AbroadScreenStep3';
 
-export default AbroadScreensStack = TabNavigator(
+const AbroadScreensStack = TabNavigator(
   {
     Step1: { screen: AbroadScreenStep1, navigationOptions: { title: 'Czas podróży' } },
     Step2: { screen: AbroadScreenStep2, navigationOptions: { title: 'Cel' }  },
@@ -37,3 +40,10 @@ export default AbroadScreensStack = TabNavigator(
     }
   }
 )
+
+
+const AbroadContainer = (props) => <AbroadScreensStack screenProps={{state: props.state, actions: props.actions}}/>
+
+const stateParse = state => ({ state: state.abroad });
+const dispatchParse = dispatch => ({ actions: bindActionCreators(abroadActions, dispatch) })
+export default connect(stateParse, dispatchParse)(AbroadContainer);

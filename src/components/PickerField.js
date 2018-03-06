@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Picker, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Picker, TextInput, Alert } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import styled from 'styled-components';
 
@@ -19,7 +19,7 @@ export default PickerField = (props) => (
     <Picker
       style={{color: '#fff', borderBottomWidth: 1, borderBottomColor: '#fff'}}
       selectedValue={props.selected}
-      onValueChange={itemValue => props.handleChange(itemValue)}>
+      onValueChange={itemValue => props.handleChange(itemValue)} >
       {
         props.items.map((item, key) => <Picker.Item key={key} label={item.viewValue} value={item.value} />)
       }

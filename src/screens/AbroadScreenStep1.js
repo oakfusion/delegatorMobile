@@ -10,32 +10,33 @@ const Container = styled.View`
     background-color: #6b686d;
 `;
 
-export default class AbroadScreenStep1 extends Component {
-  render() {
+export default AbroadScreenStep1 = (props) => {
+    const state = props.screenProps.state;
+    const actions = props.screenProps.actions;
+
     return (
         <Container>
             <ScrollView>
                 <FieldHolder placeholder="Data rozpoczęcia delegacji">
-                    <DatePickerField placeholder="Wybierz datę"/>
+                    <DatePickerField date={state.startDate} handleChange={actions.setStartDate} placeholder="Wybierz datę"/>
                 </FieldHolder>
 
                 <FieldHolder placeholder="Data przekroczenia granicy">
-                    <DatePickerField placeholder="Wybierz datę"/>
+                    <DatePickerField date={state.borderCross} handleChange={actions.setBorderCross} placeholder="Wybierz datę"/>
                 </FieldHolder>
 
                 <FieldHolder placeholder="Data przekroczenia granicy (powrót)">
-                    <DatePickerField placeholder="Wybierz datę"/>
+                    <DatePickerField date={state.borderCrossReturn} handleChange={actions.setBorderCrossReturn} placeholder="Wybierz datę"/>
                 </FieldHolder>
 
                 <FieldHolder placeholder="Data końca delegacji">
-                    <DatePickerField placeholder="Wybierz datę"/>
+                    <DatePickerField date={state.endDate} handleChange={actions.setFinishDate} placeholder="Wybierz datę"/>
                 </FieldHolder>
 
                 <FieldHolder placeholder="Data rozliczenia delegacji">
-                    <DatePickerField placeholder="Wybierz datę"/>
+                    <DatePickerField date={state.settlementDate} handleChange={actions.setSettlementDate} placeholder="Wybierz datę"/>
                 </FieldHolder>
             </ScrollView>
         </Container>
     );
-  } 
 }

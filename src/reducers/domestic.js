@@ -39,11 +39,11 @@ const initialState = {
         case 'SET_CITY':                    return { ...state, city: action.payload }
         case 'SET_VENICHLE':                return { ...state, venichle: action.payload }
         case 'SET_DISTANCE':                return { ...state, distance: action.payload }
-        case 'SET_ALIMENTATION_PROVIDED':   return { ...state, alimentationProvided: action.payload }
-        case 'SET_ACCOMODATION_PROVIDED':   return { ...state, accommodationProvided: action.payload }
         case 'SET_REGULAMIN_ACCEPT':        return { ...state, regulaminAccepted: action.payload }
         case 'SET_ADDITIONAL_EXPENSES':     return { ...state, domesticAdditionalExpenses: action.payload }
         case 'SET_EMAIL':                   return { ...state, email: action.payload }
+        case 'SET_ALIMENTATION_PROVIDED':   return { ...state, alimentationProvided: action.payload }
+        case 'SET_ACCOMODATION_PROVIDED':   return { ...state, accommodationProvided: action.payload }
         
         default: return state;
     }

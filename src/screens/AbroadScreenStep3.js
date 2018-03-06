@@ -41,23 +41,42 @@ export default class AbroadScreenStep3 extends Component {
     }
 
     render() {
+        const state = this.props.screenProps.state;
+        const actions = this.props.screenProps.actions;
+
         return (
             <Container>
                 <ScrollView>
                     <FieldHolder small>
-                        <RegularTextInput {...defaultInputProps} placeholder="Adres email" />
+                        <RegularTextInput {...defaultInputProps} 
+                            placeholder="Adres email" 
+                            value={state.email} 
+                            onChangeText={ value => actions.setEmail(value) }
+                        />
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <RegularTextInput {...defaultInputProps} placeholder="Imię" />
+                        <RegularTextInput {...defaultInputProps} 
+                            placeholder="Imię" 
+                            value={state.name} 
+                            onChangeText={ value => actions.setName(value) }
+                        />
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <RegularTextInput {...defaultInputProps} placeholder="Nazwisko" />
+                        <RegularTextInput {...defaultInputProps} 
+                            placeholder="Nazwisko" 
+                            value={state.surname} 
+                            onChangeText={ value => actions.setSurname(value) }
+                        />
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <RegularTextInput {...defaultInputProps} placeholder="Stanowisko" />
+                        <RegularTextInput {...defaultInputProps} 
+                            placeholder="Stanowisko" 
+                            value={state.position} 
+                            onChangeText={ value => actions.setPosition(value) }
+                        />
                     </FieldHolder>
 
                     <FieldHolder small>
@@ -66,6 +85,8 @@ export default class AbroadScreenStep3 extends Component {
                             labelStyle={{color: '#fff', fontSize: moderateScale(14)}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                             uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
+                            onChange={ value => actions.setAlimentationProvided(value.checked)}
+                            checked={state.alimentationProvided}
                         />
                     </FieldHolder>
 
@@ -75,6 +96,8 @@ export default class AbroadScreenStep3 extends Component {
                             labelStyle={{color: '#fff', fontSize: moderateScale(14)}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                             uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
+                            onChange={ value => actions.setAccomodationProvided(value.checked)}
+                            checked={state.accommodationProvided}
                         />
                     </FieldHolder>
 
@@ -84,6 +107,8 @@ export default class AbroadScreenStep3 extends Component {
                             labelStyle={{color: '#fff', fontSize: moderateScale(14)}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                             uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
+                            onChange={ value => actions.setRegulaminAccept(value.checked)}
+                            checked={state.regulaminAccepted}
                         />
                     </FieldHolder>
 
@@ -100,8 +125,8 @@ export default class AbroadScreenStep3 extends Component {
                     </FieldHolder>
                 </ScrollView>
 
-                <AbroadMoreDomestic visibility={this.state.domesticVisible} handleClose={() => this.closeModal('domesticVisible')}/>
-                <AbroadMoreAbroad visibility={this.state.abroadVisible} handleClose={() => this.closeModal('abroadVisible')}/>
+                <AbroadMoreDomestic actions={actions} state={state} visibility={this.state.domesticVisible} handleClose={() => this.closeModal('domesticVisible')}/>
+                <AbroadMoreAbroad actions={actions} state={state} visibility={this.state.abroadVisible} handleClose={() => this.closeModal('abroadVisible')}/>
             </Container>
         );
     }

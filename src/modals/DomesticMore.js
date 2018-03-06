@@ -19,27 +19,55 @@ export default DomesticMore = (props) => {
     return (
         <MoreModal {...props}>
             <FieldHolder small>
-                <TextField {...defaultInputProps} label="Koszty noclegów" value={state.domesticAccommodation} onChangeText={ value => actions.setAccomodation(value) }/>
+                <TextField {...defaultInputProps} 
+                    label="Koszty noclegów" 
+                    value={state.accommodationProvided ? 'Zapewnione przez pracodawcę' : state.domesticAccommodation} 
+                    disabled={state.accommodationProvided} 
+                    onChangeText={ value => actions.setAccomodation(value) }
+                />
             </FieldHolder>
 
             <FieldHolder small>
-                <TextField {...defaultInputProps} label="Koszty komunikacji miejskiej" value={state.domesticPublicTransport} onChangeText={ value => actions.setPublicTransport(value) }/>
+                <TextField {...defaultInputProps} 
+                    label="Koszty komunikacji miejskiej" 
+                    value={state.domesticPublicTransport} 
+                    onChangeText={ value => actions.setPublicTransport(value) }
+                />
             </FieldHolder>
 
             <FieldHolder small>
-                <TextField {...defaultInputProps} label="Liczba śniadań (zapewnionych przez pracodawcę)" value={state.domesticBreakfastCount} onChangeText={ value => actions.setBreakfastCount(value) }/>
+                <TextField {...defaultInputProps} 
+                    label="Liczba śniadań (zapewnionych przez pracodawcę)"
+                    disabled={state.alimentationProvided} 
+                    value={state.alimentationProvided ? 'Zapewnione przez pracodawcę' : state.domesticBreakfastCount} 
+                    onChangeText={ value => actions.setBreakfastCount(value) }
+                />
             </FieldHolder>
 
             <FieldHolder small>
-                <TextField {...defaultInputProps} label="Liczba obiadów (zapewnionych przez pracodawcę)" value={state.domesticDinnerCount} onChangeText={ value => actions.setDinnerCount(value) }/>
+                <TextField {...defaultInputProps} 
+                    label="Liczba obiadów (zapewnionych przez pracodawcę)" 
+                    disabled={state.alimentationProvided} 
+                    value={state.alimentationProvided ? 'Zapewnione przez pracodawcę' : state.domesticDinnerCount} 
+                    onChangeText={ value => actions.setDinnerCount(value) }
+                />
             </FieldHolder>
 
             <FieldHolder small>
-                <TextField {...defaultInputProps} label="Liczba kolacji (zapewnionych przez pracodawcę)" value={state.domesticSupperCount} onChangeText={ value => actions.setSupperCount(value) }/>
+                <TextField {...defaultInputProps} 
+                    label="Liczba kolacji (zapewnionych przez pracodawcę)" 
+                    disabled={state.alimentationProvided} 
+                    value={state.alimentationProvided ? 'Zapewnione przez pracodawcę' : state.domesticSupperCount} 
+                    onChangeText={ value => actions.setSupperCount(value) }
+                />
             </FieldHolder>
 
             <FieldHolder small>
-                <TextField {...defaultInputProps} label="Dodatkowe koszta" value={state.domesticAdditionalExpenses} onChangeText={ value => actions.setAdditionalExpenses(value) }/>
+                <TextField {...defaultInputProps} 
+                    label="Dodatkowe koszta" 
+                    value={state.domesticAdditionalExpenses} 
+                    onChangeText={ value => actions.setAdditionalExpenses(value) }
+                />
             </FieldHolder>
         </MoreModal>
     )
