@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, Alert } from 'react-native';
+import { Text, View, ScrollView, ActivityIndicator } from 'react-native';
 import DatePickerField from '../components/DatePickerField';
 import PickerField from '../components/PickerField';
 import FieldHolder from '../components/FieldHolder';
@@ -28,15 +28,17 @@ export default AbroadScreenStep2 = (props) => {
         <Container>
             <ScrollView>
                 <FieldHolder border placeholder="Kraj">
-                    <PickerField  
+                    <PickerField
                         selected={state.country} 
-                        handleChange={actions.setCountry}
+                        handleChange={country => actions.updateCountry(country, state.settlementDate)}
                         items={data.countries}
                     />
                 </FieldHolder>
 
                 <FieldHolder placeholder="Kurs waluty w dniu rozliczenia">
-                    <TextField {...defaultInputProps} label="Wybierz kraj" value={state.email}/>
+                    <TextField {...defaultInputProps} label={state.currency ? '' : "Wybierz kraj"} value={state.currency && `${state.currency} zł`}/>
+                    {/* <ActivityIndicator animating={state.fetchingCurrency} size="small" color="#fff" /> */}
+                    <ActivityIndicator style={{display: 'flex'}} animating={true} size="small" color="#fff" />
                 </FieldHolder>
 
                 <FieldHolder placeholder="Pojazd">
@@ -47,6 +49,7 @@ export default AbroadScreenStep2 = (props) => {
                         handleInputChange={actions.setDistance}
                         inputValue={state.distance} 
                         items={data.venichles}
+                        hiddenFor={data.venichles[0]}
                     />
                 </FieldHolder>
             </ScrollView>

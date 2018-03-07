@@ -26,7 +26,7 @@ export default PickerField = (props) => (
     </Picker>
 
     {
-      props.hiddenField && props.selected && props.selected !== 'COMPANIES'
+      props.hiddenField && props.selected && props.selected !== props.hiddenFor
       ? <TextField 
         {...defaultInputProps}
         keyboardType="numeric"

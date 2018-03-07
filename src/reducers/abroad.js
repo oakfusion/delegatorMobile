@@ -11,6 +11,8 @@ const initialState = {
   surname                          : '',
   position                         : '',
   country                          : '',
+  fetchingCurrency                 : false,
+  currency                         : '',
   borderCross                      : '',
   borderCrossReturn                : '',
   abroadAccommodation              : '',
@@ -60,6 +62,8 @@ export default function abroadState(state = initialState, action) {
     case 'SET_ADDITIONAL_EXPENSES':           return { ...state, abroadAdditionalDomesticExpenses: action.payload }
     case 'SET_ABROAD_ADDITIONAL_EXPEPENCES':  return { ...state, abroadAdditionalAbroadExpenses: action.payload }
     case 'SET_EMAIL':                         return { ...state, email: action.payload }
+    case 'SET_CURRENCY':                      return { ...state, currency: action.payload }
+    case 'FETCHING_CURRENCY':                 return { ...state, fetchingCurrency: action.payload }
     
     default: return state;
   }

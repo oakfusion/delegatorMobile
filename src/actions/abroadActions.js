@@ -1,4 +1,5 @@
-import { formatDateTime } from '../helpers/format';
+import { formatDate } from '../helpers/format';
+import { Alert } from 'react-native';
 
 export const setStartDate = date => ({type: 'SET_START_DATE', payload: date});
 export const setFinishDate = date => ({type: 'SET_FINISH_DATE', payload: date});
@@ -28,36 +29,39 @@ export const setRegulaminAccept = value => ({type: 'SET_REGULAMIN_ACCEPT', paylo
 export const setAdditionalExpenses = value => ({type: 'SET_ADDITIONAL_EXPENSES', payload: value});
 export const setAbroadAdditionalExpenses = value => ({type: 'SET_ABROAD_ADDITIONAL_EXPEPENCES', payload: value});
 export const setEmail = value => ({type: 'SET_EMAIL', payload: value});
+export const setCurrency = value => ({ type: 'SET_CURRENCY',  payload: value });
+export const fetchingCurrency = value => ({ type: 'FETCHING_CURRENCY', payload: value });
 
-export function getCurrency (date, country) {
-    return async (dispatch) => {
-        dispatch({
-            type: 'GET_CURRENCY_REQUEST'
-        });
+export function updateCountry (country, date) {
+    return function (dispatch) {
+        dispatch(setCountry(country));
+        dispatch(fetchingCurrency(true));
+        dispatch(getCurrency(country, formatDate(date)));
+    }
+}
 
-        try {
-            let response = await fetch('https://delegator.oakfusion.pl/api/currencyExchange', {
-                method: 'GET',
-                headers: {
-                  Accept: 'application/json',
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ date: formatDateTime(date), country }),
-            });
+function handleErrors(response) {
+    if (!response.ok) {
+        throw Error(response.statusText);
+    }
+    return response;
+}
 
-            let responseJson = await response.json();
-
-            dispatch({
-                type: 'GET_CURRENCY_SUCCESS',
-                payload: responseJson
-            });
-
-        } catch (error) {
-            dispatch({
-                type: 'GET_CURRENCY_FAILURE',
-                payload: error,
-                error: true
-            })
+export function fetchCurrency (country, date) {
+    return fetch(`https://delegator.oakfusion.pl/api/currencyExchange?country=${country}&date=${date}`, {
+        method: 'GET',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
         }
+    });
+}
+
+export function getCurrency (country, date) {
+    return function (dispatch) {
+        return fetchCurrency(country, date)
+            .then(handleErrors)
+            .then(response => (dispatch(setCurrency(response._bodyText)), dispatch(fetchingCurrency(false))))
+            .catch(error => (dispatch(setCurrency('')), dispatch(fetchingCurrency(false))));
     }
 }
