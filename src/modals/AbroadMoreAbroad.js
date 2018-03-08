@@ -9,7 +9,8 @@ const defaultInputProps = {
     baseColor: "#c9c9c9",
     textColor: "#fff",
     tintColor: "#ffab40",
-    labelHeight: 20
+    labelHeight: 20,
+    keyboardType: 'numeric'
 }
 
 export default AbroadMoreAbroad = (props) => {
@@ -21,60 +22,60 @@ export default AbroadMoreAbroad = (props) => {
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Koszty noclegów zagranicznych (w walucie obowiązującej w danym kraju)" 
-                    value={state.accommodationProvided ? 'Zapewnione przez pracodawcę' : state.abroadAccommodation} 
-                    disabled={state.accommodationProvided} 
-                    onChangeText={ value => actions.setAbroadAccomodation(value)}
+                    value={state.aAccommodationProvided ? 'Zapewnione przez pracodawcę' : state.aAccommodationAbroad} 
+                    disabled={state.aAccommodationProvided} 
+                    onChangeText={ value => actions.aSetAccommodationAbroad(value)}
                 />
             </FieldHolder>
 
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Koszty dojazdów zagranicznych (w walucie obowiązującej w danym kraju)" 
-                    value={state.abroadAccess} 
-                    onChangeText={ value => actions.setAbroadAccess(value) }
+                    value={state.aAccessAbroad} 
+                    onChangeText={ value => actions.aSetAccessAbroad(value) }
                 />
             </FieldHolder>
 
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Koszty zagranicznej komunikacji miejskiej (w walucie obowiązującej w danym kraju)"
-                    value={state.abroadPublicTransport} 
-                    onChangeText={ value => actions.setAbroadPublicTransport(value) }
+                    value={state.aPublicTransportAbroad} 
+                    onChangeText={ value => actions.aSetPublicTransportAbroad(value) }
                 />
             </FieldHolder>
 
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Liczba śniadań za granicą" 
-                    disabled={state.alimentationProvided} 
-                    value={state.alimentationProvided ? 'Zapewnione przez pracodawcę' : state.abroadBreakfastCount} 
-                    onChangeText={ value => actions.setAbroadBreakfastCount(value) }
+                    disabled={state.aAlimentationProvided} 
+                    value={state.aAlimentationProvided ? 'Zapewnione przez pracodawcę' : state.aBreakfastCountAbroad} 
+                    onChangeText={ value => actions.aSetBreakfastCountAbroad(value) }
                 />
             </FieldHolder>
 
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Liczba obiadów za granicą" 
-                    disabled={state.alimentationProvided} 
-                    value={state.alimentationProvided ? 'Zapewnione przez pracodawcę' : state.abroadDinnerCount} 
-                    onChangeText={ value => actions.setAbroadDinnerCount(value) }
+                    disabled={state.aAlimentationProvided} 
+                    value={state.aAlimentationProvided ? 'Zapewnione przez pracodawcę' : state.aDinnerCountAbroad} 
+                    onChangeText={ value => actions.aSetDinnerCountAbroad(value) }
                 />
             </FieldHolder>
 
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Liczba kolacji za granicą" 
-                    disabled={state.alimentationProvided} 
-                    value={state.alimentationProvided ? 'Zapewnione przez pracodawcę' : state.abroadSupperCount} 
-                    onChangeText={ value => actions.setAbroadSupperCount(value) }
+                    disabled={state.aAlimentationProvided} 
+                    value={state.aAlimentationProvided ? 'Zapewnione przez pracodawcę' : state.aSupperCountAbroad} 
+                    onChangeText={ value => actions.aSetSupperCountAbroad(value) }
                 />
             </FieldHolder>
 
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Dodatkowe koszta części zagranicznej"
-                    value={state.abroadAdditionalAbroadExpenses} 
-                    onChangeText={ value => actions.setAbroadAdditionalExpenses(value) }
+                    value={state.aAdditionalExpensesAbroad} 
+                    onChangeText={ value => actions.aSetAdditionalExpensesAbroad(value) }
                 />
             </FieldHolder>
         </MoreModal>

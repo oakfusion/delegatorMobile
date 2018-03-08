@@ -9,7 +9,8 @@ const defaultInputProps = {
     baseColor: "#c9c9c9",
     textColor: "#fff",
     tintColor: "#ffab40",
-    labelHeight: 20
+    labelHeight: 20,
+    keyboardType: 'numeric'
 }
 
 export default DomesticMore = (props) => {
@@ -21,52 +22,52 @@ export default DomesticMore = (props) => {
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Koszty noclegów" 
-                    value={state.accommodationProvided ? 'Zapewnione przez pracodawcę' : state.domesticAccommodation} 
-                    disabled={state.accommodationProvided} 
-                    onChangeText={ value => actions.setAccomodation(value) }
+                    value={state.dAccommodationProvided ? 'Zapewnione przez pracodawcę' : state.dAccommodation} 
+                    disabled={state.dAccommodationProvided} 
+                    onChangeText={ value => actions.dSetAccomodation(value) }
                 />
             </FieldHolder>
 
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Koszty komunikacji miejskiej" 
-                    value={state.domesticPublicTransport} 
-                    onChangeText={ value => actions.setPublicTransport(value) }
+                    value={state.dPublicTransport} 
+                    onChangeText={ value => actions.dSetPublicTransport(value) }
                 />
             </FieldHolder>
 
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Liczba śniadań (zapewnionych przez pracodawcę)"
-                    disabled={state.alimentationProvided} 
-                    value={state.alimentationProvided ? 'Zapewnione przez pracodawcę' : state.domesticBreakfastCount} 
-                    onChangeText={ value => actions.setBreakfastCount(value) }
+                    disabled={state.dAlimentationProvided} 
+                    value={state.dAlimentationProvided ? 'Zapewnione przez pracodawcę' : state.dBreakfastCount} 
+                    onChangeText={ value => actions.dSetBreakfastCount(value) }
                 />
             </FieldHolder>
 
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Liczba obiadów (zapewnionych przez pracodawcę)" 
-                    disabled={state.alimentationProvided} 
-                    value={state.alimentationProvided ? 'Zapewnione przez pracodawcę' : state.domesticDinnerCount} 
-                    onChangeText={ value => actions.setDinnerCount(value) }
+                    disabled={state.dAlimentationProvided} 
+                    value={state.dAlimentationProvided ? 'Zapewnione przez pracodawcę' : state.dDinnerCount} 
+                    onChangeText={ value => actions.dSetDinnerCount(value) }
                 />
             </FieldHolder>
 
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Liczba kolacji (zapewnionych przez pracodawcę)" 
-                    disabled={state.alimentationProvided} 
-                    value={state.alimentationProvided ? 'Zapewnione przez pracodawcę' : state.domesticSupperCount} 
-                    onChangeText={ value => actions.setSupperCount(value) }
+                    disabled={state.dAlimentationProvided} 
+                    value={state.dAlimentationProvided ? 'Zapewnione przez pracodawcę' : state.dSupperCount} 
+                    onChangeText={ value => actions.dSetSupperCount(value) }
                 />
             </FieldHolder>
 
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Dodatkowe koszta" 
-                    value={state.domesticAdditionalExpenses} 
-                    onChangeText={ value => actions.setAdditionalExpenses(value) }
+                    value={state.dAdditionalExpenses} 
+                    onChangeText={ value => actions.dSetAdditionalExpenses(value) }
                 />
             </FieldHolder>
         </MoreModal>

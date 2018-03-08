@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, Alert } from 'react-native';
+import { Text, View, ScrollView, ActivityIndicator } from 'react-native';
 import DatePickerField from '../components/DatePickerField';
 import PickerField from '../components/PickerField';
 import FieldHolder from '../components/FieldHolder';
@@ -28,25 +28,30 @@ export default AbroadScreenStep2 = (props) => {
         <Container>
             <ScrollView>
                 <FieldHolder border placeholder="Kraj">
-                    <PickerField  
-                        selected={state.country} 
-                        handleChange={ country => actions.setCountryFetchCurrency(country, state.settlementDate) }
+                    <PickerField
+                        selected={state.aCountry} 
+                        handleChange={country => actions.aUpdateCountry(country, state.aSettlementDate)}
                         items={data.countries}
                     />
                 </FieldHolder>
 
                 <FieldHolder placeholder="Kurs waluty w dniu rozliczenia">
-                    <TextField {...defaultInputProps} label="Wybierz kraj" value={state.email}/>
+                    {
+                        state.aFetchingCurrency 
+                        ? <ActivityIndicator animating={true} size="small" style={{marginVertical: 20}} color="#fff" />
+                        : <TextField {...defaultInputProps} label={state.aCurrency ? '' : "Wybierz kraj"} value={state.aCurrency && `${state.aCurrency} zł`}/> 
+                    }
                 </FieldHolder>
 
                 <FieldHolder placeholder="Pojazd">
                     <PickerField
                         hiddenField 
-                        selected={state.venichle} 
-                        handleChange={actions.setVenichle} 
-                        handleInputChange={actions.setDistance}
-                        inputValue={state.distance} 
+                        selected={state.aVenichle} 
+                        handleChange={actions.aSetVenichle} 
+                        handleInputChange={actions.aSetDistance}
+                        inputValue={state.aDistance} 
                         items={data.venichles}
+                        hiddenFor={[data.venichles[0].value, data.venichles[1].value]}
                     />
                 </FieldHolder>
             </ScrollView>

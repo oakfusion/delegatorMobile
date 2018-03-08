@@ -176,6 +176,10 @@
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable-hdpi\\abc_tab_indicator_mtrl_alpha.9.png"
     },
     {
+        "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_src_images_fill.png.flat",
+        "source": "C:\\projects\\delegatorMobile\\android\\app\\src\\main\\res\\drawable-mdpi\\src_images_fill.png"
+    },
+    {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v23_abc_control_background_material.xml.flat",
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable-v23\\abc_control_background_material.xml"
     },
@@ -448,6 +452,10 @@
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable-xhdpi\\abc_list_divider_mtrl_alpha.9.png"
     },
     {
+        "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_node_modules_reactnativemodestcheckbox_checked.png.flat",
+        "source": "C:\\projects\\delegatorMobile\\android\\app\\src\\main\\res\\drawable-mdpi\\node_modules_reactnativemodestcheckbox_checked.png"
+    },
+    {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_abc_list_selector_disabled_holo_light.9.png.flat",
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable-xhdpi\\abc_list_selector_disabled_holo_light.9.png"
     },
@@ -466,6 +474,10 @@
     {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_abc_list_menu_item_layout.xml.flat",
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\layout\\abc_list_menu_item_layout.xml"
+    },
+    {
+        "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_node_modules_reactnavigation_src_views_assets_backicon.png.flat",
+        "source": "C:\\projects\\delegatorMobile\\android\\app\\src\\main\\res\\drawable-xhdpi\\node_modules_reactnavigation_src_views_assets_backicon.png"
     },
     {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_abc_textfield_default_mtrl_alpha.9.png.flat",
@@ -560,6 +572,14 @@
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable\\abc_dialog_material_background_dark.xml"
     },
     {
+        "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_node_modules_reactnavigation_src_views_assets_backiconmask.png.flat",
+        "source": "C:\\projects\\delegatorMobile\\android\\app\\src\\main\\res\\drawable-mdpi\\node_modules_reactnavigation_src_views_assets_backiconmask.png"
+    },
+    {
+        "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_src_images_plane.png.flat",
+        "source": "C:\\projects\\delegatorMobile\\android\\app\\src\\main\\res\\drawable-mdpi\\src_images_plane.png"
+    },
+    {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\color_abc_primary_text_material_light.xml.flat",
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\color\\abc_primary_text_material_light.xml"
     },
@@ -574,6 +594,10 @@
     {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_notification_template_lines.xml.flat",
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\layout\\notification_template_lines.xml"
+    },
+    {
+        "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_src_images_done.png.flat",
+        "source": "C:\\projects\\delegatorMobile\\android\\app\\src\\main\\res\\drawable-mdpi\\src_images_done.png"
     },
     {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\anim_abc_shrink_fade_out_from_bottom.xml.flat",
@@ -630,6 +654,10 @@
     {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_abc_ic_menu_selectall_mtrl_alpha.png.flat",
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable-mdpi\\abc_ic_menu_selectall_mtrl_alpha.png"
+    },
+    {
+        "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_node_modules_reactnavigation_src_views_assets_backicon.png.flat",
+        "source": "C:\\projects\\delegatorMobile\\android\\app\\src\\main\\res\\drawable-xxhdpi\\node_modules_reactnavigation_src_views_assets_backicon.png"
     },
     {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_abc_ic_menu_copy_mtrl_am_alpha.png.flat",
@@ -848,6 +876,10 @@
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable-xxhdpi\\abc_btn_switch_to_on_mtrl_00012.9.png"
     },
     {
+        "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_node_modules_reactnativedatepicker_date_icon.png.flat",
+        "source": "C:\\projects\\delegatorMobile\\android\\app\\src\\main\\res\\drawable-mdpi\\node_modules_reactnativedatepicker_date_icon.png"
+    },
+    {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldrtl-xxhdpi_abc_spinner_mtrl_am_alpha.9.png.flat",
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable-ldrtl-xxhdpi\\abc_spinner_mtrl_am_alpha.9.png"
     },
@@ -858,6 +890,10 @@
     {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_abc_list_longpressed_holo.9.png.flat",
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable-mdpi\\abc_list_longpressed_holo.9.png"
+    },
+    {
+        "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_node_modules_reactnativemodestcheckbox_unchecked.png.flat",
+        "source": "C:\\projects\\delegatorMobile\\android\\app\\src\\main\\res\\drawable-mdpi\\node_modules_reactnativemodestcheckbox_unchecked.png"
     },
     {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_abc_list_divider_mtrl_alpha.9.png.flat",
@@ -992,6 +1028,10 @@
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\layout\\abc_action_menu_item_layout.xml"
     },
     {
+        "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_node_modules_reactnavigation_src_views_assets_backicon.png.flat",
+        "source": "C:\\projects\\delegatorMobile\\android\\app\\src\\main\\res\\drawable-hdpi\\node_modules_reactnavigation_src_views_assets_backicon.png"
+    },
+    {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\color-v11_abc_background_cache_hint_selector_material_dark.xml.flat",
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
     },
@@ -1040,6 +1080,10 @@
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable-ldrtl-hdpi\\abc_ic_menu_cut_mtrl_alpha.png"
     },
     {
+        "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_node_modules_reactnavigation_src_views_assets_backicon.png.flat",
+        "source": "C:\\projects\\delegatorMobile\\android\\app\\src\\main\\res\\drawable-mdpi\\node_modules_reactnavigation_src_views_assets_backicon.png"
+    },
+    {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\layout_redbox_view.xml.flat",
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\react-native-0.52.0.aar\\0b4846fa6fa6dc80566374f4210926c0\\res\\layout\\redbox_view.xml"
     },
@@ -1062,6 +1106,10 @@
     {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_abc_popup_background_mtrl_mult.9.png.flat",
         "source": "C:\\Users\\Pavlo\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-23.0.1.aar\\c9dba961c57a193c01af454ac75db768\\res\\drawable-xhdpi\\abc_popup_background_mtrl_mult.9.png"
+    },
+    {
+        "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi_node_modules_reactnavigation_src_views_assets_backicon.png.flat",
+        "source": "C:\\projects\\delegatorMobile\\android\\app\\src\\main\\res\\drawable-xxxhdpi\\node_modules_reactnavigation_src_views_assets_backicon.png"
     },
     {
         "merged": "C:\\projects\\delegatorMobile\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_abc_ic_menu_cut_mtrl_alpha.png.flat",

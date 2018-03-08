@@ -9,7 +9,8 @@ const defaultInputProps = {
     baseColor: "#c9c9c9",
     textColor: "#fff",
     tintColor: "#ffab40",
-    labelHeight: 20
+    labelHeight: 20,
+    keyboardType: 'numeric'
 }
 
 export default AbroadMoreDomestic = (props) => {
@@ -21,52 +22,52 @@ export default AbroadMoreDomestic = (props) => {
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Koszty noclegów w kraju (w zł)" 
-                    value={state.accommodationProvided ? 'Zapewnione przez pracodawcę' : state.domesticAccommodation} 
-                    disabled={state.accommodationProvided} 
-                    onChangeText={ value => actions.setAccomodation(value)}
+                    value={state.aAccommodationProvided ? 'Zapewnione przez pracodawcę' : state.aAccommodationDomestic} 
+                    disabled={state.aAccommodationProvided} 
+                    onChangeText={ value => actions.aSetAccommodationDomestic(value)}
                 />
             </FieldHolder>
 
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Koszty komunikacji miejskiej w kraju (w zł)" 
-                    value={state.domesticPublicTransport} 
-                    onChangeText={ value => actions.setPublicTransport(value) }
+                    value={state.aPublicTransportDomestic} 
+                    onChangeText={ value => actions.aSetPublicTransportDomestic(value) }
                 />
             </FieldHolder>
 
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Liczba śniadań w kraju" 
-                    disabled={state.alimentationProvided} 
-                    value={state.alimentationProvided ? 'Zapewnione przez pracodawcę' : state.domesticBreakfastCount} 
-                    onChangeText={ value => actions.setBreakfastCount(value) }
+                    disabled={state.aAlimentationProvided} 
+                    value={state.aAlimentationProvided ? 'Zapewnione przez pracodawcę' : state.aBreakfastCountDomestic} 
+                    onChangeText={ value => actions.aSetBreakfastCountDomestic(value) }
                 />
             </FieldHolder>
 
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Liczba obiadów w kraju" 
-                    disabled={state.alimentationProvided} 
-                    value={state.alimentationProvided ? 'Zapewnione przez pracodawcę' : state.domesticDinnerCount} 
-                    onChangeText={ value => actions.setDinnerCount(value) }
+                    disabled={state.aAlimentationProvided} 
+                    value={state.aAlimentationProvided ? 'Zapewnione przez pracodawcę' : state.aDinnerCountDomestic} 
+                    onChangeText={ value => actions.aSetDinnerCountDomestic(value) }
                 />
             </FieldHolder>
 
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Liczba kolacji w kraju" 
-                    disabled={state.alimentationProvided} 
-                    value={state.alimentationProvided ? 'Zapewnione przez pracodawcę' : state.domesticSupperCount} 
-                    onChangeText={ value => actions.setSupperCount(value) }
+                    disabled={state.aAlimentationProvided} 
+                    value={state.aAlimentationProvided ? 'Zapewnione przez pracodawcę' : state.aSupperCountDomestic} 
+                    onChangeText={ value => actions.aSetSupperCountDomestic(value) }
                 />
             </FieldHolder>
 
             <FieldHolder small>
                 <TextField {...defaultInputProps} 
                     label="Dodatkowe koszta części krajowej" 
-                    value={state.abroadAdditionalDomesticExpenses} 
-                    onChangeText={ value => actions.setAdditionalExpenses(value) }
+                    value={state.aAdditionalExpensesDomestic} 
+                    onChangeText={ value => actions.aSetAdditionalExpensesDomestic(value) }
                 />
             </FieldHolder>
         </MoreModal>

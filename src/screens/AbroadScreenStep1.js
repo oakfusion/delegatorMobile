@@ -18,23 +18,23 @@ export default AbroadScreenStep1 = (props) => {
         <Container>
             <ScrollView>
                 <FieldHolder placeholder="Data rozpoczęcia delegacji">
-                    <DatePickerField date={state.startDate} handleChange={actions.setStartDate} placeholder="Wybierz datę"/>
+                    <DatePickerField date={state.aStartDate} mode="datetime" handleChange={actions.aSetStartDate} placeholder="Wybierz datę"/>
                 </FieldHolder>
 
                 <FieldHolder placeholder="Data przekroczenia granicy">
-                    <DatePickerField date={state.borderCross} handleChange={actions.setBorderCross} placeholder="Wybierz datę"/>
+                    <DatePickerField date={state.aBorderCross} mode="datetime" min={state.aStartDate} handleChange={actions.aSetBorderCross} placeholder="Wybierz datę"/>
                 </FieldHolder>
 
                 <FieldHolder placeholder="Data przekroczenia granicy (powrót)">
-                    <DatePickerField date={state.borderCrossReturn} handleChange={actions.setBorderCrossReturn} placeholder="Wybierz datę"/>
+                    <DatePickerField date={state.aBorderCrossReturn} mode="datetime" min={state.aBorderCross} handleChange={actions.aSetBorderCrossReturn} placeholder="Wybierz datę"/>
                 </FieldHolder>
 
                 <FieldHolder placeholder="Data końca delegacji">
-                    <DatePickerField date={state.endDate} handleChange={actions.setFinishDate} placeholder="Wybierz datę"/>
+                    <DatePickerField date={state.aEndDate} mode="datetime" min={state.aBorderCrossReturn} handleChange={actions.aSetEndDate} placeholder="Wybierz datę"/>
                 </FieldHolder>
 
                 <FieldHolder placeholder="Data rozliczenia delegacji">
-                    <DatePickerField date={state.settlementDate} handleChange={actions.setSettlementDate} placeholder="Wybierz datę"/>
+                    <DatePickerField date={state.aSettlementDate} mode="date" min={state.aEndDate} max={state.aEndDate} handleChange={actions.aSetSettlementDate} placeholder="Wybierz datę"/>
                 </FieldHolder>
             </ScrollView>
         </Container>

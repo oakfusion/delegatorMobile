@@ -26,13 +26,13 @@ export default PickerField = (props) => (
     </Picker>
 
     {
-      props.hiddenField && props.selected && props.selected !== 'COMPANIES'
+      props.hiddenField && props.selected && (props.hiddenFor.indexOf(props.selected) !== 1)
       ? <TextField 
-        {...defaultInputProps}
-        keyboardType="numeric"
-        label='Liczba przejechanych kilometrów' 
-        value={props.inputValue}
-        onChangeText={ value => props.handleInputChange(value) }
+          {...defaultInputProps}
+          keyboardType="numeric"
+          label='Liczba przejechanych kilometrów' 
+          value={props.inputValue}
+          onChangeText={ value => props.handleInputChange(value) }
         />
       : null
     }

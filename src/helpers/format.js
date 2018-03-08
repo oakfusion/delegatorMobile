@@ -1,11 +1,9 @@
 export function formatDateTime (value) {
-    const date = new Date(value);
-    const ISOdate = date.toISOString().split(':').slice(0, 2).join(":");
-    return ISOdate; 
+    const formattedDate = value.replace(' ', 'T');
+    return formattedDate; 
 }
 
 export function formatDate (value) {
-    const date = new Date(value);
-    const ISOdate = date.toISOString().split('T')[0];
-    return ISOdate; 
+    const formattedDate = value.split(' ')[0];
+    return formattedDate; 
 }

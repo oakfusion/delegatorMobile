@@ -13,9 +13,13 @@ export default DatePickerField = (props) => (
     <DatePicker
       style={{width: '100%', paddingTop: 0}}
       date={props.date}
-      mode="datetime"
+      placeholder={props.placeholder}
+      mode={props.mode}
+      minDate={props.min || undefined}
+      maxDate={props.max || undefined}
       androidMode="spinner"
-      format="YYYY-MM-DD h:mm"
+      is24Hour={true}
+      format={props.mode === "date" ? "YYYY-MM-DD" : "YYYY-MM-DD HH:mm"}
       confirmBtnText="Confirm"
       iconComponent={<Icon name="perm-contact-calendar" size={20} color="#fff"/>}
       cancelBtnText="Cancel"

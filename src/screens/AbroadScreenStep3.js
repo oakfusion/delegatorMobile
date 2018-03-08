@@ -8,19 +8,19 @@ import { moderateScale } from '../helpers/scaling';
 import Button from '../components/Button';
 import AbroadMoreDomestic from '../modals/AbroadMoreDomestic';
 import AbroadMoreAbroad from '../modals/AbroadMoreAbroad';
+import { TextField } from 'react-native-material-textfield';
 
 const Container = styled.View`
     flex: 1;
     background-color: #6b686d;
 `;
 
-const RegularTextInput = styled.TextInput`
-    color: #fff;
-`;
-
 const defaultInputProps = {
-    placeholderTextColor: "#c9c9c9",
-    underlineColorAndroid: "#fff"
+    baseColor: "#c9c9c9",
+    textColor: "#fff",
+    tintColor: "#ffab40",
+    labelHeight: 20,
+    disabled: true
 }
 
 export default class AbroadScreenStep3 extends Component {
@@ -48,35 +48,19 @@ export default class AbroadScreenStep3 extends Component {
             <Container>
                 <ScrollView>
                     <FieldHolder small>
-                        <RegularTextInput {...defaultInputProps} 
-                            placeholder="Adres email" 
-                            value={state.email} 
-                            onChangeText={ value => actions.setEmail(value) }
-                        />
+                        <TextField {...defaultInputProps} label='Adres email' value={state.aEmail} onChangeText={ value => actions.aSetEmail(value) }/>
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <RegularTextInput {...defaultInputProps} 
-                            placeholder="Imię" 
-                            value={state.name} 
-                            onChangeText={ value => actions.setName(value) }
-                        />
+                        <TextField {...defaultInputProps} label='Imię' value={state.aName} onChangeText={ value => actions.aSetName(value) }/>
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <RegularTextInput {...defaultInputProps} 
-                            placeholder="Nazwisko" 
-                            value={state.surname} 
-                            onChangeText={ value => actions.setSurname(value) }
-                        />
+                        <TextField {...defaultInputProps} label='Nazwisko' value={state.aSurname} onChangeText={ value => actions.aSetSurname(value) }/>
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <RegularTextInput {...defaultInputProps} 
-                            placeholder="Stanowisko" 
-                            value={state.position} 
-                            onChangeText={ value => actions.setPosition(value) }
-                        />
+                        <TextField {...defaultInputProps} label='Stanowisko' value={state.aPosition} onChangeText={ value => actions.aSetPosition(value) }/>
                     </FieldHolder>
 
                     <FieldHolder small>
@@ -85,8 +69,8 @@ export default class AbroadScreenStep3 extends Component {
                             labelStyle={{color: '#fff', fontSize: moderateScale(14)}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                             uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
-                            onChange={ value => actions.setAlimentationProvided(value.checked)}
-                            checked={state.alimentationProvided}
+                            onChange={ value => actions.aSetAlimentationProvided(value.checked)}
+                            checked={state.aAlimentationProvided}
                         />
                     </FieldHolder>
 
@@ -96,8 +80,8 @@ export default class AbroadScreenStep3 extends Component {
                             labelStyle={{color: '#fff', fontSize: moderateScale(14)}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                             uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
-                            onChange={ value => actions.setAccomodationProvided(value.checked)}
-                            checked={state.accommodationProvided}
+                            onChange={ value => actions.aSetAccommodationProvided(value.checked)}
+                            checked={state.aAccommodationProvided}
                         />
                     </FieldHolder>
 
@@ -107,8 +91,8 @@ export default class AbroadScreenStep3 extends Component {
                             labelStyle={{color: '#fff', fontSize: moderateScale(14)}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                             uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
-                            onChange={ value => actions.setRegulaminAccept(value.checked)}
-                            checked={state.regulaminAccepted}
+                            onChange={ value => actions.aSetRegulaminAccepted(value.checked)}
+                            checked={state.aRegulaminAccepted}
                         />
                     </FieldHolder>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Alert } from 'react-native';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { bindActionCreators } from 'redux';
@@ -27,7 +28,7 @@ const AbroadScreensStack = TabNavigator(
           iconName = 'person';
         }
         return <Icon name={iconName} size={25} color={tintColor} />;
-      },
+      }
     }),
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
