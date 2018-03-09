@@ -2588,6 +2588,10 @@ moment@2.x.x:
   version "2.20.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"
 
+moment@^2.21.0:
+  version "2.21.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.21.0.tgz#2a114b51d2a6ec9e6d83cf803f838a878d8a023a"
+
 morgan@~1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/morgan/-/morgan-1.6.1.tgz#5fd818398c6819cba28a7cd6664f292fe1c0bbf2"
@@ -3138,9 +3142,9 @@ react-native@0.52.0:
     xmldoc "^0.4.0"
     yargs "^9.0.0"
 
-react-navigation@^1.0.3:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-1.1.2.tgz#6e041b8a3cd0f5266072df0b52a55117892875f2"
+react-navigation@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/react-navigation/-/react-navigation-1.5.0.tgz#0dbef16a086d8fcdbcf44147e0c77fa53121648e"
   dependencies:
     clamp "^1.0.1"
     hoist-non-react-statics "^2.2.0"

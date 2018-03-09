@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { View, ScrollView, TextInput, Alert } from 'react-native';
+import { View, ScrollView, ActivityIndicator } from 'react-native';
+import { TextField } from 'react-native-material-textfield';
 import CheckBox from 'react-native-modest-checkbox';
-import FieldHolder from '../components/FieldHolder';
 import styled from 'styled-components';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { moderateScale } from '../helpers/scaling';
+
+import FieldHolder from '../components/FieldHolder';
+import DatePickerField from '../components/DatePickerField';
+import PickerField from '../components/PickerField'
 import Button from '../components/Button';
 import AbroadMoreDomestic from '../modals/AbroadMoreDomestic';
 import AbroadMoreAbroad from '../modals/AbroadMoreAbroad';
-import { TextField } from 'react-native-material-textfield';
+import * as data from '../data.json';
 
 const Container = styled.View`
     flex: 1;
@@ -19,11 +22,10 @@ const defaultInputProps = {
     baseColor: "#c9c9c9",
     textColor: "#fff",
     tintColor: "#ffab40",
-    labelHeight: 20,
-    disabled: true
+    labelHeight: 20
 }
 
-export default class AbroadScreenStep3 extends Component {
+export default class AbroadScreen extends Component {
     constructor(props) {
         super(props);
         this.state = { 
@@ -41,12 +43,64 @@ export default class AbroadScreenStep3 extends Component {
     }
 
     render() {
-        const state = this.props.screenProps.state;
-        const actions = this.props.screenProps.actions;
+        const state = this.props.state;
+        const actions = this.props.actions;
 
         return (
             <Container>
                 <ScrollView>
+                    <FieldHolder placeholder="Data rozpoczęcia delegacji">
+                        <DatePickerField date={state.aStartDate} mode="datetime" handleChange={actions.aSetStartDate} placeholder="Wybierz datę"/>
+                    </FieldHolder>
+
+                    <FieldHolder placeholder="Data przekroczenia granicy">
+                        <DatePickerField date={state.aBorderCross} mode="datetime" min={state.aStartDate} handleChange={actions.aSetBorderCross} placeholder="Wybierz datę"/>
+                    </FieldHolder>
+
+                    <FieldHolder placeholder="Data przekroczenia granicy (powrót)">
+                        <DatePickerField date={state.aBorderCrossReturn} mode="datetime" min={state.aBorderCross} handleChange={actions.aSetBorderCrossReturn} placeholder="Wybierz datę"/>
+                    </FieldHolder>
+
+                    <FieldHolder placeholder="Data końca delegacji">
+                        <DatePickerField date={state.aEndDate} mode="datetime" min={state.aBorderCrossReturn} handleChange={actions.aSetEndDate} placeholder="Wybierz datę"/>
+                    </FieldHolder>
+
+                    <FieldHolder placeholder="Data rozliczenia delegacji">
+                        <DatePickerField date={state.aSettlementDate} mode="date" min={state.aEndDate} max={state.aEndDate} handleChange={actions.aSetSettlementDate} placeholder="Wybierz datę"/>
+                    </FieldHolder>
+
+                    <FieldHolder border placeholder="Kraj">
+                        <PickerField
+                            selected={state.aCountry} 
+                            handleChange={country => actions.aUpdateCountry(country, state.aSettlementDate)}
+                            items={data.countries}
+                        />
+                    </FieldHolder>
+
+                    {
+                        state.aCountry
+                        ? <FieldHolder placeholder="Kurs waluty w dniu rozliczenia">
+                            {
+                                state.aFetchingCurrency 
+                                ? <ActivityIndicator animating={true} size="small" style={{marginVertical: 20}} color="#fff" />
+                                : <TextField {...defaultInputProps} disabled={true} label={state.aCurrency ? '' : "Wybierz kraj"} value={state.aCurrency && `${state.aCurrency} zł`}/> 
+                            }
+                        </FieldHolder>
+                        : null
+                    }
+
+                    <FieldHolder small border placeholder="Pojazd">
+                        <PickerField
+                            hiddenField 
+                            selected={state.aVenichle} 
+                            handleChange={actions.aSetVenichle} 
+                            handleInputChange={actions.aSetDistance}
+                            inputValue={state.aDistance} 
+                            items={data.venichles}
+                            hiddenFor={[data.venichles[0].value, data.venichles[1].value]}
+                        />
+                    </FieldHolder>
+
                     <FieldHolder small>
                         <TextField {...defaultInputProps} label='Adres email' value={state.aEmail} onChangeText={ value => actions.aSetEmail(value) }/>
                     </FieldHolder>
@@ -66,7 +120,7 @@ export default class AbroadScreenStep3 extends Component {
                     <FieldHolder small>
                         <CheckBox
                             label='Zapewnione całodzienne wyżywienie?'
-                            labelStyle={{color: '#fff', fontSize: moderateScale(14)}}
+                            labelStyle={{color: '#fff'}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                             uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
                             onChange={ value => actions.aSetAlimentationProvided(value.checked)}
@@ -77,7 +131,7 @@ export default class AbroadScreenStep3 extends Component {
                     <FieldHolder small>
                         <CheckBox
                             label='Zapewniony nocleg?'
-                            labelStyle={{color: '#fff', fontSize: moderateScale(14)}}
+                            labelStyle={{color: '#fff'}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                             uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
                             onChange={ value => actions.aSetAccommodationProvided(value.checked)}
@@ -88,7 +142,7 @@ export default class AbroadScreenStep3 extends Component {
                     <FieldHolder small>
                         <CheckBox
                             label='Zapoznałem się i akceptuję regulamin*'
-                            labelStyle={{color: '#fff', fontSize: moderateScale(14)}}
+                            labelStyle={{color: '#fff'}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                             uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
                             onChange={ value => actions.aSetRegulaminAccepted(value.checked)}

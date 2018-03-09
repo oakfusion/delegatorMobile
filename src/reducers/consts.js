@@ -26,7 +26,7 @@ export const abroadConsts = {
     SET_SETTLEMENT_DATE             : 'SET_SETTLEMENT_DATE',
     SET_ACCOMODATION                : 'SET_ACCOMODATION',
     SET_PUBLIC_TRANSPORT            : 'SET_PUBLIC_TRANSPORT',
-    SET_BREAKFAST_COUNR             : 'SET_BREAKFAST_COUNT',
+    SET_BREAKFAST_COUNT             : 'SET_BREAKFAST_COUNT',
     SET_DINNER_COUNT                : 'SET_DINNER_COUNT',
     SET_SUPPER_COUNT                : 'SET_SUPPER_COUNT',
     SET_NAME                        : 'SET_NAME',

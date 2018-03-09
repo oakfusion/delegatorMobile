@@ -17,6 +17,7 @@ export default DatePickerField = (props) => (
       mode={props.mode}
       minDate={props.min || undefined}
       maxDate={props.max || undefined}
+      disabled={props.disabled}
       androidMode="spinner"
       is24Hour={true}
       format={props.mode === "date" ? "YYYY-MM-DD" : "YYYY-MM-DD HH:mm"}

@@ -11,8 +11,8 @@ const Container = styled.View`
 
 const ContainerInner = styled.View`
   margin-bottom: ${props => props.small ? 0 : 14}
-  border-color: #ccc;
-  borderBottomWidth: ${props => props.border ? 1 : 0}
+  border-color: #aaa;
+  borderBottomWidth: ${props => props.border ? 0.25 : 0}
 `;
 
 const Placeholder = styled.Text`

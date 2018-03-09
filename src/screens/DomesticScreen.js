@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
-import { View, ScrollView, TextInput } from 'react-native';
+import { View, ScrollView } from 'react-native';
+import { TextField } from 'react-native-material-textfield';
 import CheckBox from 'react-native-modest-checkbox';
-import FieldHolder from '../components/FieldHolder';
 import styled from 'styled-components';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-import { moderateScale } from '../helpers/scaling';
+
+import FieldHolder from '../components/FieldHolder';
+import PickerField from '../components/PickerField';
+import DatePickerField from '../components/DatePickerField';
 import Button from '../components/Button';
 import DomesticMore from '../modals/DomesticMore';
-import { TextField } from 'react-native-material-textfield';
+import * as data from '../data.json';
+
 
 const Container = styled.View`
     flex: 1;
     background-color: #6b686d;
-`;
-
-const RegularTextInput = styled.TextInput`
-    color: #fff;
 `;
 
 const defaultInputProps = {
@@ -25,7 +25,7 @@ const defaultInputProps = {
     labelHeight: 20
 }
 
-export default class DomesticScreenStep2 extends Component {
+export default class DomesticScreen extends Component {
     constructor(props) {
         super(props);
         this.state = { modalVisible: false }
@@ -39,15 +39,43 @@ export default class DomesticScreenStep2 extends Component {
         this.setState({ modalVisible: false });
     }
 
+    validate () {
+
+    }
+
     render() {
-        const state = this.props.screenProps.state;
-        const actions = this.props.screenProps.actions;
+        const state = this.props.state;
+        const actions = this.props.actions;
 
         return (
             <Container>
                 <ScrollView>
+                    <FieldHolder placeholder="Data rozpoczęcia delegacji">
+                        <DatePickerField date={state.dStartDate} mode="datetime" handleChange={actions.dSetStartDate} placeholder="Wybierz datę"/>
+                    </FieldHolder>
+
+                    <FieldHolder placeholder="Data końca delegacji">
+                        <DatePickerField date={state.dEndDate} mode="datetime" min={state.dStartDate} handleChange={actions.dSetEndDate} placeholder="Wybierz datę"/>
+                    </FieldHolder>
+
+                    <FieldHolder placeholder="Data rozliczenia delegacji">
+                        <DatePickerField date={state.dSettlementDate} mode="date" min={state.dEndDate} max={state.dEndDate} handleChange={actions.dSetSettlementDate} placeholder="Wybierz datę"/>
+                    </FieldHolder>
+
+                    <FieldHolder small placeholder="Pojazd">
+                        <PickerField 
+                            hiddenField 
+                            selected={state.dVenichle} 
+                            handleChange={actions.dSetVenichle} 
+                            handleInputChange={actions.dSetDistance}
+                            inputValue={state.dDistance} 
+                            items={data.venichles}
+                            hiddenFor={[data.venichles[0].value, data.venichles[1].value]}
+                        />
+                    </FieldHolder>
+
                     <FieldHolder small>
-                        <TextField {...defaultInputProps} label='Adres email' value={state.dEmail} onChangeText={ value => actions.dSetEmail(value) }/>
+                        <TextField {...defaultInputProps} label='Adres email' value={state.dEmail} onChangeText={ value => actions.dSetEmail(value) } ref='aaaa' onBlur={() => console.log(this.refs.aaaa)}/>
                     </FieldHolder>
 
                     <FieldHolder small>
@@ -102,6 +130,7 @@ export default class DomesticScreenStep2 extends Component {
                     <FieldHolder small last>
                         <Button title="Wyślij"/>
                     </FieldHolder>
+
                 </ScrollView>
 
                 <DomesticMore state={state} actions={actions} visibility={this.state.modalVisible} handleClose={() => this.closeModal()}/>
