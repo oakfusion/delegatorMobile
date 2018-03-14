@@ -36,18 +36,21 @@ const MainStack = StackNavigator(
 )
 
 const AboutStack = StackNavigator(
-  { About:      { screen: AboutScreen }}, 
-  { navigationOptions: ({navigation}) => StackOptionsFunc(navigation) }
+  { 
+    About: { screen: AboutScreen, navigationOptions: ({navigation}) => StackOptionsFunc(navigation) }
+  }
 )
 
 const ContactStack = StackNavigator(
-  { Contact:    { screen: ContactScreen }}, 
-  { navigationOptions: ({navigation}) => StackOptionsFunc(navigation) }
+  { 
+    Contact: { screen: ContactScreen, navigationOptions: ({navigation}) => StackOptionsFunc(navigation) }
+  }
 )
 
 const RegulationStack = StackNavigator(
-  { Regulation:    { screen: RegulationScreen }}, 
-  { navigationOptions: ({navigation}) => StackOptionsFunc(navigation) }
+  { 
+    Regulation:    { screen: RegulationScreen, navigationOptions: ({navigation}) => StackOptionsFunc(navigation) }
+  }
 )
 
 export default DrawerNavigator(

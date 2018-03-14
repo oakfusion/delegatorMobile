@@ -19,3 +19,20 @@ export const dSetAccomodationProvided = (value, text) => ({type: CONSTS.SET_ACCO
 export const dSetRegulaminAccept = value => ({type: CONSTS.SET_REGULAMIN_ACCEPT, payload: value});
 export const dSetAdditionalExpenses = value => ({type: CONSTS.SET_ADDITIONAL_EXPENSES, payload: value});
 export const dSetEmail = value => ({type: CONSTS.SET_EMAIL, payload: value});
+
+export async function sendData (data) {
+    try {
+        let response = await fetch('https://delegator.oakfusion.pl/api/delegation', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ ...data }),
+          });
+        let responseJson = await response.json();
+        return responseJson.movies;
+      } catch (error) {
+        console.error(error);
+      }
+}

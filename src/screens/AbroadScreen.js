@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { View, ScrollView, ActivityIndicator } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
-import CheckBox from 'react-native-modest-checkbox';
 import styled from 'styled-components';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
 import FieldHolder from '../components/FieldHolder';
 import DatePickerField from '../components/DatePickerField';
-import PickerField from '../components/PickerField'
+import PickerField from '../components/PickerField';
+import CheckBoxField from '../components/CheckBoxField';
+import InputField from '../components/InputField';
+
 import Button from '../components/Button';
 import AbroadMoreDomestic from '../modals/AbroadMoreDomestic';
 import AbroadMoreAbroad from '../modals/AbroadMoreAbroad';
@@ -50,27 +51,69 @@ export default class AbroadScreen extends Component {
             <Container>
                 <ScrollView>
                     <FieldHolder placeholder="Data rozpoczęcia delegacji">
-                        <DatePickerField date={state.aStartDate} mode="datetime" handleChange={actions.aSetStartDate} placeholder="Wybierz datę"/>
+                        <DatePickerField 
+                            required
+                            ref="startDate"
+                            date={state.aStartDate} 
+                            mode="datetime" 
+                            handleChange={actions.aSetStartDate} 
+                            placeholder="Wybierz datę"
+                        />
                     </FieldHolder>
 
                     <FieldHolder placeholder="Data przekroczenia granicy">
-                        <DatePickerField date={state.aBorderCross} mode="datetime" min={state.aStartDate} handleChange={actions.aSetBorderCross} placeholder="Wybierz datę"/>
+                        <DatePickerField 
+                            required
+                            ref="borderCross"
+                            date={state.aBorderCross} 
+                            mode="datetime" 
+                            min={state.aStartDate} 
+                            handleChange={actions.aSetBorderCross} 
+                            placeholder="Wybierz datę"
+                        />
                     </FieldHolder>
 
                     <FieldHolder placeholder="Data przekroczenia granicy (powrót)">
-                        <DatePickerField date={state.aBorderCrossReturn} mode="datetime" min={state.aBorderCross} handleChange={actions.aSetBorderCrossReturn} placeholder="Wybierz datę"/>
+                        <DatePickerField 
+                            required
+                            ref="borderCrossReturn"
+                            date={state.aBorderCrossReturn} 
+                            mode="datetime" 
+                            min={state.aBorderCross} 
+                            handleChange={actions.aSetBorderCrossReturn} 
+                            placeholder="Wybierz datę"
+                        />
                     </FieldHolder>
 
                     <FieldHolder placeholder="Data końca delegacji">
-                        <DatePickerField date={state.aEndDate} mode="datetime" min={state.aBorderCrossReturn} handleChange={actions.aSetEndDate} placeholder="Wybierz datę"/>
+                        <DatePickerField 
+                            required
+                            ref="endDate"
+                            date={state.aEndDate} 
+                            mode="datetime" 
+                            min={state.aBorderCrossReturn} 
+                            handleChange={actions.aSetEndDate} 
+                            placeholder="Wybierz datę"
+                        />
                     </FieldHolder>
 
                     <FieldHolder placeholder="Data rozliczenia delegacji">
-                        <DatePickerField date={state.aSettlementDate} mode="date" min={state.aEndDate} max={state.aEndDate} handleChange={actions.aSetSettlementDate} placeholder="Wybierz datę"/>
+                        <DatePickerField 
+                            required
+                            ref="settlementDate"
+                            date={state.aSettlementDate} 
+                            mode="date" 
+                            min={state.aEndDate} 
+                            max={state.aEndDate} 
+                            handleChange={actions.aSetSettlementDate} 
+                            placeholder="Wybierz datę"
+                        />
                     </FieldHolder>
 
                     <FieldHolder border placeholder="Kraj">
                         <PickerField
+                            required
+                            ref="country"
                             selected={state.aCountry} 
                             handleChange={country => actions.aUpdateCountry(country, state.aSettlementDate)}
                             items={data.countries}
@@ -92,6 +135,8 @@ export default class AbroadScreen extends Component {
                     <FieldHolder small placeholder="Pojazd">
                         <PickerField
                             hiddenField 
+                            required
+                            ref="venichle"
                             selected={state.aVenichle} 
                             handleChange={actions.aSetVenichle} 
                             handleInputChange={actions.aSetDistance}
@@ -102,23 +147,47 @@ export default class AbroadScreen extends Component {
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <TextField {...defaultInputProps} label='Adres email' value={state.aEmail} onChangeText={ value => actions.aSetEmail(value) }/>
+                        <InputField
+                            ref="email"
+                            label='Adres email' 
+                            value={state.aEmail}
+                            error="Nie może być puste" 
+                            onChangeText={ value => actions.aSetEmail(value) }
+                        />
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <TextField {...defaultInputProps} label='Imię' value={state.aName} onChangeText={ value => actions.aSetName(value) }/>
+                        <InputField
+                            ref="name"
+                            label='Imię' 
+                            value={state.aName} 
+                            error="Nie może być puste"
+                            onChangeText={ value => actions.aSetName(value) }
+                        />
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <TextField {...defaultInputProps} label='Nazwisko' value={state.aSurname} onChangeText={ value => actions.aSetSurname(value) }/>
+                        <InputField 
+                            ref="surname"
+                            label='Nazwisko' 
+                            value={state.aSurname} 
+                            error="Nie może być puste"
+                            onChangeText={ value => actions.aSetSurname(value) }
+                        />
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <TextField {...defaultInputProps} label='Stanowisko' value={state.aPosition} onChangeText={ value => actions.aSetPosition(value) }/>
+                        <InputField 
+                            ref="position"
+                            label='Stanowisko' 
+                            value={state.aPosition} 
+                            error="Nie może być puste"
+                            onChangeText={ value => actions.aSetPosition(value) }
+                        />
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <CheckBox
+                        <CheckBoxField
                             label='Zapewnione całodzienne wyżywienie?'
                             labelStyle={{color: '#fff'}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
@@ -129,7 +198,7 @@ export default class AbroadScreen extends Component {
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <CheckBox
+                        <CheckBoxField
                             label='Zapewniony nocleg?'
                             labelStyle={{color: '#fff'}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
@@ -140,11 +209,14 @@ export default class AbroadScreen extends Component {
                     </FieldHolder>
 
                     <FieldHolder small>
-                        <CheckBox
+                        <CheckBoxField
+                            required
+                            ref="regulation"
                             label='Zapoznałem się i akceptuję regulamin*'
                             labelStyle={{color: '#fff'}}
                             checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                             uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
+                            uncheckedComponentError={<Icon name="checkbox-blank-outline" size={22} color="#ef5350"/>}
                             onChange={ value => actions.aSetRegulaminAccepted(value.checked)}
                             checked={state.aRegulaminAccepted}
                         />
@@ -159,7 +231,7 @@ export default class AbroadScreen extends Component {
                     </FieldHolder>
 
                     <FieldHolder small last>
-                        <Button title="Wyślij"/>
+                        <Button title="Wyślij" onPress={() => this.validate(this.refs)}/>
                     </FieldHolder>
                 </ScrollView>
 

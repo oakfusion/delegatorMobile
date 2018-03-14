@@ -35,7 +35,7 @@ export default class DomesticScreen extends Component {
         this.setState({ modalVisible: false });
     }
 
-    validateAll (items) {
+    validate (items) {
         let validate = [];
 
         for (let item in items) {
@@ -44,8 +44,6 @@ export default class DomesticScreen extends Component {
 
         if (validate.every(item => item)) {
             console.log('valid')
-        } else {
-            console.log('invalid')
         }
     }
 
@@ -112,7 +110,7 @@ export default class DomesticScreen extends Component {
                             ref="email"
                             label='Adres email' 
                             value={state.dEmail} 
-                            error='Nie może byc puste'
+                            error='Nie może być puste'
                             handleChange={ value => actions.dSetEmail(value) } 
                         />
                     </FieldHolder>
@@ -122,7 +120,7 @@ export default class DomesticScreen extends Component {
                             ref="name"
                             label='Imię' 
                             value={state.dName} 
-                            error='Nie może byc puste'
+                            error='Nie może być puste'
                             handleChange={ value => actions.dSetName(value) } 
                         />
                     </FieldHolder>
@@ -132,7 +130,7 @@ export default class DomesticScreen extends Component {
                             ref="surname"
                             label='Nazwisko' 
                             value={state.dSurname} 
-                            error='Nie może byc puste'
+                            error='Nie może być puste'
                             handleChange={ value => actions.dSetSurname(value) }
                         />
                     </FieldHolder>
@@ -142,7 +140,7 @@ export default class DomesticScreen extends Component {
                             ref="position"
                             label='Stanowisko' 
                             value={state.dPosition} 
-                            error='Nie może byc puste'
+                            error='Nie może być puste'
                             handleChange={ value => actions.dSetPosition(value) }
                         />
                     </FieldHolder>
@@ -187,7 +185,7 @@ export default class DomesticScreen extends Component {
                     </FieldHolder>
 
                     <FieldHolder small last>
-                        <Button title="Wyślij" onPress={() => this.validateAll(this.refs)}/>
+                        <Button title="Wyślij" onPress={() => this.validate(this.refs)}/>
                     </FieldHolder>
 
                 </ScrollView>
