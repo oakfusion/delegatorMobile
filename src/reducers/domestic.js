@@ -20,6 +20,7 @@ const initialState = {
   dRegulaminAccepted            : false,
   dAdditionalExpenses           : '',
   dEmail                        : '',
+  dUuid                         : '',
   abroad                        : false
 }
   
@@ -44,7 +45,8 @@ export default function domesticState(state = initialState, action) {
     case CONSTS.SET_EMAIL:                   return { ...state, dEmail: action.payload }
     case CONSTS.SET_ALIMENTATION_PROVIDED:   return { ...state, dAlimentationProvided: action.payload }
     case CONSTS.SET_ACCOMODATION_PROVIDED:   return { ...state, dAccommodationProvided: action.payload }
-    
+    case CONSTS.SET_DELEGATION_UUID:         return { ...state, dUuid: action.payload }
+
     default: return state;
   }
 }

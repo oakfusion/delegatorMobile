@@ -9,6 +9,7 @@ export default class PDFScreen extends React.Component {
             <View>
                 <TouchableOpacity style={{paddingLeft: 15}} onPress={() => {}}>
                     <Icon name="file_download" size={30} color="#fff" />
+
                 </TouchableOpacity>
             </View>
         ),
@@ -18,7 +19,7 @@ export default class PDFScreen extends React.Component {
         const { params } = this.props.navigation.state;
         const uuid = params ? params.uuid : null;
 
-        const source = {uri:`https://delegator.oakfusion.pl/report/print?uuid=${JSON.stringify(uuid)}`, cache:true};
+        const source = {uri:`https://delegator.oakfusion.pl/report/print?uuid=${uuid}`, cache:true};
  
         return (
             <View style={styles.container}>

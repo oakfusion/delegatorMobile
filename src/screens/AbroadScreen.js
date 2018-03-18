@@ -126,7 +126,7 @@ export default class AbroadScreen extends Component {
                             {
                                 state.aFetchingCurrency 
                                 ? <ActivityIndicator animating={true} size="small" style={{marginVertical: 20}} color="#fff" />
-                                : <TextField {...defaultInputProps} disabled={true} label={state.aCurrency ? '' : "Wybierz kraj"} value={state.aCurrency && `${state.aCurrency} zł`}/> 
+                                : <InputField disabled={true} label={state.aCurrency ? '' : "Wybierz kraj"} value={state.aCurrency && `${state.aCurrency} zł`}/> 
                             }
                         </FieldHolder>
                         : null

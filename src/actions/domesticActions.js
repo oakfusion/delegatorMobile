@@ -19,21 +19,48 @@ export const dSetAccomodationProvided = (value, text) => ({type: CONSTS.SET_ACCO
 export const dSetRegulaminAccept = value => ({type: CONSTS.SET_REGULAMIN_ACCEPT, payload: value});
 export const dSetAdditionalExpenses = value => ({type: CONSTS.SET_ADDITIONAL_EXPENSES, payload: value});
 export const dSetEmail = value => ({type: CONSTS.SET_EMAIL, payload: value});
+export const dDelegationResponse = value =>  ({type: CONSTS.SET_DELEGATION_UUID, payload: value});
 
-export async function sendData (data) {
+export function sendData (data) {
+  return async function (dispatch) {
+
+    const preparedData = {
+      start:                      data.dStartDate,
+      end:                        data.dEndDate,
+      settlementDate:             data.dSettlementDate,
+      domesticAccommodation:      data.dAccommodation,
+      domesticPublicTransport:    data.dPublicTransport,
+      domesticBreakfastCount:     data.dBreakfastCount,
+      domesticDinnerCount:        data.dDinnerCount,
+      domesticSupperCount:        data.dSupperCount,
+      name:                       data.dName,
+      surname:                    data.dSurname,
+      position:                   data.dPosition,
+      city:                       data.dCity,
+      carType:                    data.dVenichle,
+      kilometers:                 data.dDistance,
+      alimentationProvided:       data.dAlimentationProvided,
+      accommodationProvided:      data.dAccommodationProvided,
+      domesticAdditionalExpenses: data.dAdditionalExpenses,
+      email:                      data.dEmail,
+      abroad:                     data.abroad
+    }
+
+    console.log(preparedData);
+
     try {
-        let response = await fetch('https://delegator.oakfusion.pl/api/delegation', {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ ...data }),
-          });
-        let responseJson = await response.json();
-        console.log(responseJson);
-        return responseJson;
-      } catch (error) {
-        console.error(error);
-      }
+      let response = await fetch('https://delegator.oakfusion.pl/api/delegation', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ...preparedData }),
+        });
+      let responseJson = await response.json();
+      dispatch(dDelegationResponse(responseJson.uuid));
+    } catch (error) {
+      console.error(error);
+    }
+  }
 }

@@ -34,7 +34,8 @@ export default class InputField extends Component {
 
     render () {
         return (
-            <TextField {...defaultInputProps} 
+            <TextField {...defaultInputProps}
+                disabled={this.props.disabled}
                 label={this.props.label} 
                 value={this.props.value} 
                 error={this.state.error}
