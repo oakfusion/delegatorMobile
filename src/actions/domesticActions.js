@@ -31,7 +31,8 @@ export async function sendData (data) {
             body: JSON.stringify({ ...data }),
           });
         let responseJson = await response.json();
-        return responseJson.movies;
+        console.log(responseJson);
+        return responseJson;
       } catch (error) {
         console.error(error);
       }

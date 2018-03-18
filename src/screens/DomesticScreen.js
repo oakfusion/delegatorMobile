@@ -43,7 +43,9 @@ export default class DomesticScreen extends Component {
         }
 
         if (validate.every(item => item)) {
-            console.log('valid')
+            this.props.actions.sendDate(this.props.state).then( uuid => { 
+                this.props.navigation.navigate('Pdf', { uuid }) 
+            });
         }
     }
 
