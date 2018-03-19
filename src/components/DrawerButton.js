@@ -1,13 +1,16 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableNativeFeedback, TouchableOpacity, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+
+const Touchable = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableOpacity;
 
 export default DrawerButton = (props) => {
 	return (
-    <View>
-      <TouchableOpacity style={{paddingLeft: 15}} onPress={() => {props.navigation.navigate('DrawerOpen')}}>
+    <Touchable onPress={() => {props.navigation.navigate('DrawerOpen')}} background={TouchableNativeFeedback.Ripple('rgba(0, 0, 0, .32)', true)}>
+      <View style={{padding: 15}}>
         <Icon name="menu" size={30} color="#fff" />
-      </TouchableOpacity>
-    </View>
+      </View>
+    </Touchable>
   );
 };

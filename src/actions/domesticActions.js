@@ -1,5 +1,6 @@
 import { domesticConsts as CONSTS } from '../reducers/consts';
-
+import { formatDateTime, formatDate } from '../helpers/format';
+ 
 export const dSetStartDate = date => ({type: CONSTS.SET_START_DATE, payload: date});
 export const dSetEndDate = date => ({type: CONSTS.SET_END_DATE, payload: date});
 export const dSetSettlementDate = date => ({type: CONSTS.SET_SETTLEMENT_DATE, payload: date});
@@ -19,15 +20,15 @@ export const dSetAccomodationProvided = (value, text) => ({type: CONSTS.SET_ACCO
 export const dSetRegulaminAccept = value => ({type: CONSTS.SET_REGULAMIN_ACCEPT, payload: value});
 export const dSetAdditionalExpenses = value => ({type: CONSTS.SET_ADDITIONAL_EXPENSES, payload: value});
 export const dSetEmail = value => ({type: CONSTS.SET_EMAIL, payload: value});
-export const dDelegationResponse = value =>  ({type: CONSTS.SET_DELEGATION_UUID, payload: value});
+export const dGetUuid = value =>  ({type: CONSTS.SET_DELEGATION_UUID, payload: value});
 
 export function sendData (data) {
   return async function (dispatch) {
 
     const preparedData = {
-      start:                      data.dStartDate,
-      end:                        data.dEndDate,
-      settlementDate:             data.dSettlementDate,
+      start:                      formatDateTime(data.dStartDate),
+      end:                        formatDateTime(data.dEndDate),
+      settlementDate:             formatDate(data.dSettlementDate),
       domesticAccommodation:      data.dAccommodation,
       domesticPublicTransport:    data.dPublicTransport,
       domesticBreakfastCount:     data.dBreakfastCount,
@@ -46,8 +47,6 @@ export function sendData (data) {
       abroad:                     data.abroad
     }
 
-    console.log(preparedData);
-
     try {
       let response = await fetch('https://delegator.oakfusion.pl/api/delegation', {
           method: 'POST',
@@ -58,7 +57,7 @@ export function sendData (data) {
           body: JSON.stringify({ ...preparedData }),
         });
       let responseJson = await response.json();
-      dispatch(dDelegationResponse(responseJson.uuid));
+      dispatch(dGetUuid(responseJson.uuid));
     } catch (error) {
       console.error(error);
     }

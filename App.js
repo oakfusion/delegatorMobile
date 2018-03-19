@@ -60,7 +60,8 @@ export default DrawerNavigator(
     'Rozliczenie delegacji' : { screen: MainStack },
     'O Aplikacji'           : { screen: AboutStack },
     'Kontakt'               : { screen: ContactStack },
-    'Regulamin'             : { screen: RegulationStack }             
+    'Regulamin'             : { screen: RegulationStack },
+    'Pdf'                   : { screen: PDFScreen }             
   },{ 
     contentComponent: SideNav,
     drawerBackgroundColor: '#3b3a3e',

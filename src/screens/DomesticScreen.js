@@ -109,6 +109,16 @@ export default class DomesticScreen extends Component {
 
                     <FieldHolder small>
                         <InputField
+                            ref="city"
+                            label='Miasto'
+                            value={state.dCity} 
+                            error='Nie może być puste'
+                            handleChange={ value => actions.dSetCity(value) } 
+                        />
+                    </FieldHolder>
+
+                    <FieldHolder small>
+                        <InputField
                             ref="email"
                             label='Adres email' 
                             value={state.dEmail} 

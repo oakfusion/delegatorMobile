@@ -24,7 +24,7 @@ const ButtonText = styled.Text`
 `;
 
 const Button = (props) => (
-    <ButtonArea onPress={props.onPress} {...props}>
+    <ButtonArea onPress={props.onPress} {...props} background={TouchableNativeFeedback.Ripple('rgba(0, 0, 0, .32)', true)}>
         <ButtonAreaInner {...props}>
             <ButtonText {...props}>{props.upper ? props.title.toUpperCase() : props.title}</ButtonText>
         </ButtonAreaInner>
