@@ -13,6 +13,7 @@ import Button from '../components/Button';
 import AbroadMoreDomestic from '../modals/AbroadMoreDomestic';
 import AbroadMoreAbroad from '../modals/AbroadMoreAbroad';
 import * as data from '../data.json';
+import { formatDate, formatDateTime } from '../helpers/format';
 
 const Container = styled.View`
     flex: 1;
@@ -41,6 +42,52 @@ export default class AbroadScreen extends Component {
     
     closeModal (modal) {
         this.setState({ [modal]: false });
+    }
+
+    validate (items) {
+        let validate = [];
+
+        for (let item in items) {
+            validate.push(this.refs[item].validate());
+        }
+
+        if (validate.every(item => item)) {
+
+            const data = {
+                start:                            formatDateTime(this.props.state.aStartDate),
+                end:                              formatDateTime(this.props.state.aEndDate),
+                domesticAccommodation:            this.props.state.aAccommodationDomestic,
+                domesticPublicTransport:          this.props.state.aPublicTransportDomestic,
+                domesticBreakfastCount:           this.props.state.aBreakfastCountDomestic,
+                domesticDinnerCount:              this.props.state.aDinnerCountDomestic,
+                domesticSupperCount:              this.props.state.aSupperCountDomestic,
+                settlementDate:                   formatDate(this.props.state.aSettlementDate),
+                name:                             this.props.state.aName,
+                surname:                          this.props.state.aSurname,
+                position:                         this.props.state.aPosition,
+                country:                          this.props.state.aCountry,
+                borderCross:                      formatDateTime(this.props.state.aBorderCross),
+                borderCrossReturn:                formatDateTime(this.props.state.aBorderCrossReturn),
+                abroadAccommodation:              this.props.state.aAccommodationAbroad,
+                abroadAccess:                     this.props.state.aAccessAbroad,
+                abroadPublicTransport:            this.props.state.aPublicTransportAbroad,
+                abroadBreakfastCount:             this.props.state.aBreakfastCountAbroad,
+                abroadDinnerCount:                this.props.state.aDinnerCountAbroad,
+                abroadSupperCount:                this.props.state.aSupperCountAbroad,
+                carType:                          this.props.state.aVenichle,
+                kilometers:                       this.props.state.aDistance,
+                alimentationProvided:             this.props.state.aAlimentationProvided,
+                accommodationProvided:            this.props.state.aAccommodationProvided,
+                email:                            this.props.state.aEmail,
+                abroadAdditionalDomesticExpenses: this.props.state.aAdditionalExpensesDomestic,
+                abroadAdditionalAbroadExpenses:   this.props.state.aAdditionalExpensesAbroad,
+                abroad:                           this.props.state.abroad                
+            }
+
+            this.props.actions.sendData(data).then( () => {
+                this.props.navigation.navigate('Pdf', { uuid: this.props.state.aUuid }) 
+            });
+        }
     }
 
     render() {
@@ -152,7 +199,7 @@ export default class AbroadScreen extends Component {
                             label='Adres email' 
                             value={state.aEmail}
                             error="Nie może być puste" 
-                            onChangeText={ value => actions.aSetEmail(value) }
+                            handleChange={ value => actions.aSetEmail(value) }
                         />
                     </FieldHolder>
 
@@ -162,7 +209,7 @@ export default class AbroadScreen extends Component {
                             label='Imię' 
                             value={state.aName} 
                             error="Nie może być puste"
-                            onChangeText={ value => actions.aSetName(value) }
+                            handleChange={ value => actions.aSetName(value) }
                         />
                     </FieldHolder>
 
@@ -172,7 +219,7 @@ export default class AbroadScreen extends Component {
                             label='Nazwisko' 
                             value={state.aSurname} 
                             error="Nie może być puste"
-                            onChangeText={ value => actions.aSetSurname(value) }
+                            handleChange={ value => actions.aSetSurname(value) }
                         />
                     </FieldHolder>
 
@@ -182,7 +229,7 @@ export default class AbroadScreen extends Component {
                             label='Stanowisko' 
                             value={state.aPosition} 
                             error="Nie może być puste"
-                            onChangeText={ value => actions.aSetPosition(value) }
+                            handleChange={ value => actions.aSetPosition(value) }
                         />
                     </FieldHolder>
 

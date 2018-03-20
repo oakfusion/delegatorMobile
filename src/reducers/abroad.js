@@ -31,6 +31,7 @@ const initialState = {
   aEmail                            : '',
   aAdditionalExpensesDomestic       : '',
   aAdditionalExpensesAbroad         : '',
+  aUuid                             : '',
   abroad                            : true
 }
   
@@ -66,6 +67,7 @@ export default function abroadState(state = initialState, action) {
     case CONSTS.SET_EMAIL:                         return { ...state, aEmail: action.payload }
     case CONSTS.SET_CURRENCY:                      return { ...state, aCurrency: action.payload }
     case CONSTS.FETCHING_CURRENCY:                 return { ...state, aFetchingCurrency: action.payload }
+    case CONSTS.SET_DELEGATION_UUID:               return { ...state, aUuid: action.payload }
     
     default: return state;
   }

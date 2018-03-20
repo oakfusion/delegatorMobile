@@ -32,6 +32,26 @@ export const aSetAdditionalExpensesAbroad = value => ({type: CONSTS.SET_ABROAD_A
 export const aSetEmail = value => ({type: CONSTS.SET_EMAIL, payload: value});
 export const aSetCurrency = value => ({ type: CONSTS.SET_CURRENCY,  payload: value });
 export const aFetchingCurrency = value => ({ type: CONSTS.FETCHING_CURRENCY, payload: value });
+export const aGetUuid = value =>  ({type: CONSTS.SET_DELEGATION_UUID, payload: value});
+
+export function sendData (data) {
+  return async function (dispatch) {
+    try {
+      let response = await fetch('https://delegator.oakfusion.pl/api/delegation', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ...data }),
+        });
+      let responseJson = await response.json();
+      dispatch(aGetUuid(responseJson.uuid));
+    } catch (error) {
+      console.error(error);
+    }
+  }
+}
 
 export function aUpdateCountry (country, date) {
     return function (dispatch) {

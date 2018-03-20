@@ -51,5 +51,6 @@ export const abroadConsts = {
     SET_ABROAD_ADDITIONAL_EXPENSES  : 'A_SET_ABROAD_ADDITIONAL_EXPEPENCES',
     SET_EMAIL                       : 'A_SET_EMAIL',
     SET_CURRENCY                    : 'A_SET_CURRENCY',
-    FETCHING_CURRENCY               : 'FETCHING_CURRENCY'
+    FETCHING_CURRENCY               : 'FETCHING_CURRENCY',
+    SET_DELEGATION_UUID             : 'A_SET_DELEGATION_UUID'
 }

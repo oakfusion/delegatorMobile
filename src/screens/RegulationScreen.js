@@ -12,6 +12,10 @@ const ContainerInner = styled.View`
   padding-horizontal: 15;
 `;
 
+const SubtitleWrap = styled.View`
+  backgound-color: #6b686d
+`;
+
 const Subtitle = styled.Text`
   color: #fff;
   font-size: ${moderateScale(20)};
@@ -66,7 +70,7 @@ export default class RegulationScreen extends React.Component {
         <ScrollView>
           <ContainerInner>
               <List>
-                  <Subtitle>Definicje</Subtitle>
+                  <SubtitleWrap><Subtitle>Definicje</Subtitle></SubtitleWrap>
                   <View>
                     <ListItem bullet='1.'><BoldText>Regulamin</BoldText> - niniejszy Regulamin świadczenia usług drogą elektroniczną w ramach działania Serwisu “Delegator”.</ListItem>
                     <ListItem bullet='2.'><BoldText>Administrator</BoldText> - podmiot świadczący usługi za pośrednictwem serwisu na zasadach określonych w niniejszym Regulaminie - Właściciel Serwisu: OakFusion Sp z o.o. z siedzibą we Wrocławiu przy ul. Żmigrodzkiej 93B, wpisanej do Krajowego Rejestru Sądowego prowadzonego przez Sąd Rejonowy dla Wrocławia - Fabrycznej, VI Wydział Gospodarczy, pod numerem KRS 0000499761. Spółka posiada kapitał własny w wysokości 66 350 PLN w całości opłacony. Zarejestrowana pod numer identyfikacji podatkowej NIP: 895-202-67-49 oraz REGON: 022325104. Kontakt za pośrednictwem poczty elektronicznej: office@oakfusion.pl</ListItem>
@@ -78,7 +82,7 @@ export default class RegulationScreen extends React.Component {
               </List>
 
               <List>
-                  <Subtitle>Postanowienia ogólne</Subtitle>
+                <SubtitleWrap><Subtitle>Postanowienia ogólne</Subtitle></SubtitleWrap>
                   <View>
                     <ListItem bullet='1.'>Niniejszy Regulamin określa zasady korzystania z Serwisu “Delegator” dostępnego pod adresem: www.delegator.pl</ListItem>
                     <ListItem bullet='2.'>Niniejszy Regulamin jest regulaminem, o którym mowa w art. 8 Ustawy z dnia 18 lipca 2002 r. o świadczeniu usług drogą elektroniczną (Dz. U. Nr 144, poz. 1204 ze zm.)</ListItem>

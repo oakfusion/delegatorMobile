@@ -6,7 +6,7 @@ import * as abroadActions from '../actions/abroadActions';
 
 import AbroadScreen from '../screens/AbroadScreen';
 
-const AbroadContainer = (props) => <AbroadScreen state={props.state} actions={props.actions} />
+const AbroadContainer = (props) => <AbroadScreen navigation={props.navigation} state={props.state} actions={props.actions} />
 
 const stateParse = state => ({ state: state.abroad });
 const dispatchParse = dispatch => ({ actions: bindActionCreators(abroadActions, dispatch) })

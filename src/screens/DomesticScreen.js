@@ -43,7 +43,30 @@ export default class DomesticScreen extends Component {
         }
 
         if (validate.every(item => item)) {
-            this.props.actions.sendData(this.props.state).then( uuid => {
+
+            const data = {
+                start:                      formatDateTime(this.props.state.dStartDate),
+                end:                        formatDateTime(this.props.state.dEndDate),
+                settlementDate:             formatDate(this.props.state.dSettlementDate),
+                domesticAccommodation:      this.props.state.dAccommodation,
+                domesticPublicTransport:    this.props.state.dPublicTransport,
+                domesticBreakfastCount:     this.props.state.dBreakfastCount,
+                domesticDinnerCount:        this.props.state.dDinnerCount,
+                domesticSupperCount:        this.props.state.dSupperCount,
+                name:                       this.props.state.dName,
+                surname:                    this.props.state.dSurname,
+                position:                   this.props.state.dPosition,
+                city:                       this.props.state.dCity,
+                carType:                    this.props.state.dVenichle,
+                kilometers:                 this.props.state.dDistance,
+                alimentationProvided:       this.props.state.dAlimentationProvided,
+                accommodationProvided:      this.props.state.dAccommodationProvided,
+                domesticAdditionalExpenses: this.props.state.dAdditionalExpenses,
+                email:                      this.props.state.dEmail,
+                abroad:                     this.props.state.abroad
+            }
+
+            this.props.actions.sendData(data).then( () => {
                 this.props.navigation.navigate('Pdf', { uuid: this.props.state.dUuid }) 
             });
         }

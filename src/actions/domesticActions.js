@@ -24,29 +24,6 @@ export const dGetUuid = value =>  ({type: CONSTS.SET_DELEGATION_UUID, payload: v
 
 export function sendData (data) {
   return async function (dispatch) {
-
-    const preparedData = {
-      start:                      formatDateTime(data.dStartDate),
-      end:                        formatDateTime(data.dEndDate),
-      settlementDate:             formatDate(data.dSettlementDate),
-      domesticAccommodation:      data.dAccommodation,
-      domesticPublicTransport:    data.dPublicTransport,
-      domesticBreakfastCount:     data.dBreakfastCount,
-      domesticDinnerCount:        data.dDinnerCount,
-      domesticSupperCount:        data.dSupperCount,
-      name:                       data.dName,
-      surname:                    data.dSurname,
-      position:                   data.dPosition,
-      city:                       data.dCity,
-      carType:                    data.dVenichle,
-      kilometers:                 data.dDistance,
-      alimentationProvided:       data.dAlimentationProvided,
-      accommodationProvided:      data.dAccommodationProvided,
-      domesticAdditionalExpenses: data.dAdditionalExpenses,
-      email:                      data.dEmail,
-      abroad:                     data.abroad
-    }
-
     try {
       let response = await fetch('https://delegator.oakfusion.pl/api/delegation', {
           method: 'POST',
@@ -54,7 +31,7 @@ export function sendData (data) {
             Accept: 'application/json',
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ ...preparedData }),
+          body: JSON.stringify({ ...data }),
         });
       let responseJson = await response.json();
       dispatch(dGetUuid(responseJson.uuid));
