@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {NavigationActions} from 'react-navigation';
-import { ScrollView, Text, View, StyleSheet, PixelRatio, TouchableOpacity, Alert } from 'react-native';
-import Mailer from 'react-native-mail';
+import { ScrollView, Text, View, StyleSheet, PixelRatio, TouchableOpacity, Alert, Linking } from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -20,30 +19,9 @@ class SideNav extends Component {
   }
  
   handleEmail = () => {
-    console.log(Mailer);
-    Mailer.mail({
-      subject: 'need help',
-      recipients: ['support@example.com'],
-      ccRecipients: ['supportCC@example.com'],
-      bccRecipients: ['supportBCC@example.com'],
-      body: '<b>A Bold Body</b>',
-      isHTML: true,
-      attachment: {
-        path: '',  // The absolute path of the file from which to read data.
-        type: '',   // Mime Type: jpg, png, doc, ppt, html, pdf
-        name: '',   // Optional: Custom filename for attachment
-      }
-    }, (error, event) => {
-      Alert.alert(
-        error,
-        event,
-        [
-          {text: 'Ok', onPress: () => console.log('OK: Email Error Response')},
-          {text: 'Cancel', onPress: () => console.log('CANCEL: Email Error Response')}
-        ],
-        { cancelable: true }
-      )
-    });
+    const mail = 'office@oakfusion.pl';
+    const subject = 'Kontakt z Delegator mobilny';
+    Linking.openURL(`mailto:${mail}?subject=${subject}`)
   }
 
   render () {
