@@ -3,7 +3,6 @@ package com.delegatormobile;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.chirag.RNMail.RNMail;
 import com.oblador.vectoricons.VectorIconsPackage;
 import org.wonday.pdf.RCTPdfView;
 import com.RNFetchBlob.RNFetchBlobPackage;
@@ -11,6 +10,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.rnfs.RNFSPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -29,7 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new VectorIconsPackage(),
             new RCTPdfView(),
-            new RNFetchBlobPackage()
+            new RNFetchBlobPackage(),
+            new RNFSPackage()
       );
     }
 

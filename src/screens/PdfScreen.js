@@ -1,8 +1,9 @@
 import React from 'react';
-import { StyleSheet, Dimensions, View, TouchableNativeFeedback, TouchableOpacity, Platform } from 'react-native';
+import { StyleSheet, Dimensions, View, TouchableNativeFeedback, TouchableOpacity, Platform, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Pdf from 'react-native-pdf';
 import RNFetchBlob from 'react-native-fetch-blob'
+import RNFS from 'react-native-fs';
 
 
 const Touchable = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableOpacity;
@@ -11,12 +12,18 @@ const url = 'https://delegator.oakfusion.pl/report/print?uuid=';
 
 function downloadFile (src) {
     console.log(src);
-    RNFetchBlob
-        .config({ fileCache : true })
-        .fetch('GET', `${src}.pdf`)
-        .then((res) => {
-            console.log('The file saved to ', res.path())
+    return new Promise((resolve, reject) => {
+        RNFetchBlob
+        .fetch('GET', src)
+        .then( res => {
+            let base64Str = res.data;
+            let pdfLocation = `storage/sdcard0/delegations/delegation-${new Date().toISOString()}.pdf`;
+            RNFetchBlob.fs.writeFile(pdfLocation, base64Str, 'base64');
+            alert('Raport zapisany w ' + pdfLocation);
         })
+    }).catch((error) => {
+        console.log("Error", error)
+    });
 }
 
 export default class PDFScreen extends React.Component {
