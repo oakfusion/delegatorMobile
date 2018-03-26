@@ -18,7 +18,9 @@ export const domesticConsts = {
     SET_EMAIL                   : 'D_SET_EMAIL',
     SET_ALIMENTATION_PROVIDED   : 'D_SET_ALIMENTATION_PROVIDED',
     SET_ACCOMODATION_PROVIDED   : 'D_SET_ACCOMODATION_PROVIDED',
-    SET_DELEGATION_UUID         : 'D_SET_DELEGATION_UUID'
+    SET_DELEGATION_UUID         : 'D_SET_DELEGATION_UUID',
+    SET_SETTLEMENT_MAX_DATE     : 'D_SET_SETTLEMENT_MAX_DATE',
+    RESET                       : 'RESET'
 }
 
 export const abroadConsts = {
@@ -52,5 +54,7 @@ export const abroadConsts = {
     SET_EMAIL                       : 'A_SET_EMAIL',
     SET_CURRENCY                    : 'A_SET_CURRENCY',
     FETCHING_CURRENCY               : 'FETCHING_CURRENCY',
-    SET_DELEGATION_UUID             : 'A_SET_DELEGATION_UUID'
+    SET_DELEGATION_UUID             : 'A_SET_DELEGATION_UUID',
+    SET_SETTLEMENT_MAX_DATE         : 'A_SET_SETTLEMENT_MAX_DATE',
+    RESET                           : 'A_RESET'
 }

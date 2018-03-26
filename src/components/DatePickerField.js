@@ -43,6 +43,11 @@ export default class DatePickerField extends Component {
 	validate () {
 		if (this.props.required) {
 			if (this.props.date) {
+				if (!!this.props.min && this.props.date < this.props.min) {
+					this.makeWrong();
+					return false
+				}
+
                 this.makeRight();
                 return true;
             } else {
@@ -56,42 +61,43 @@ export default class DatePickerField extends Component {
 		return (
 			<Container>
 				<DatePicker
-				style={{width: '100%', paddingTop: 0}}
-				date={this.props.date}
-				placeholder={this.props.placeholder}
-				mode={this.props.mode}
-				minDate={this.props.min || undefined}
-				maxDate={this.props.max || undefined}
-				disabled={this.props.disabled}
-				androidMode="spinner"
-				is24Hour={true}
-				format={this.props.mode === "date" ? "YYYY-MM-DD" : "YYYY-MM-DD HH:mm"}
-				confirmBtnText="Confirm"
-				iconComponent={<Icon name="perm-contact-calendar" size={20} color={this.state.color}/>}
-				cancelBtnText="Cancel"
-				customStyles={{
-					dateIcon: {
-						position: 'absolute',
-						left: 0,
-						top: 4,
-						marginLeft: 0
-					},
-					dateInput: {
-						marginRight: 10,
-						borderWidth: 0,
-						borderBottomWidth: this.state.border,
-						borderBottomColor: this.state.color
-					},
-					placeholderText: {
-						color: this.state.color
-					},
-					dateText: {
-						color: regularColor,
-						fontSize: 16
-					}
-				}}
-				onDateChange={this.props.handleChange}
+					style={{width: '100%', paddingTop: 0}}
+					date={this.props.date}
+					placeholder={this.props.placeholder}
+					mode={this.props.mode}
+					minDate={this.props.min || undefined}
+					maxDate={this.props.max || undefined}
+					disabled={this.props.disabled}
+					androidMode="spinner"
+					is24Hour={true}
+					format={this.props.mode === "date" ? "YYYY-MM-DD" : "YYYY-MM-DD HH:mm"}
+					confirmBtnText="Confirm"
+					iconComponent={<Icon name="perm-contact-calendar" size={20} color={this.state.color}/>}
+					cancelBtnText="Cancel"
+					customStyles={{
+						dateIcon: {
+							position: 'absolute',
+							left: 0,
+							top: 4,
+							marginLeft: 0
+						},
+						dateInput: {
+							marginRight: 10,
+							borderWidth: 0,
+							borderBottomWidth: this.state.border,
+							borderBottomColor: this.state.color
+						},
+						placeholderText: {
+							color: this.state.color
+						},
+						dateText: {
+							color: regularColor,
+							fontSize: 16
+						}
+					}}
+					onDateChange={this.props.handleChange}
 				/>
+				{!!this.props.min && this.props.date < this.props.min ? <Text style={{color: errorColor, fontSize: 12, paddingTop: 5}}>Nieprawidlowa kolejnosc dat</Text> : null}
 			</Container>
 		)
 	}

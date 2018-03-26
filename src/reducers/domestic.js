@@ -4,6 +4,7 @@ const initialState = {
   dStartDate                    : '',
   dEndDate                      : '',
   dSettlementDate               : '',
+  dSettlementMaxDate            : '',
   dAccommodation                : '',
   dPublicTransport              : '',
   dBreakfastCount               : '',
@@ -46,6 +47,8 @@ export default function domesticState(state = initialState, action) {
     case CONSTS.SET_ALIMENTATION_PROVIDED:   return { ...state, dAlimentationProvided: action.payload }
     case CONSTS.SET_ACCOMODATION_PROVIDED:   return { ...state, dAccommodationProvided: action.payload }
     case CONSTS.SET_DELEGATION_UUID:         return { ...state, dUuid: action.payload }
+    case CONSTS.SET_SETTLEMENT_MAX_DATE:     return { ...state, dSettlementMaxDate: action.payload }
+    case CONSTS.RESET:                       return { ...initialState, dUuid: action.payload }
 
     default: return state;
   }

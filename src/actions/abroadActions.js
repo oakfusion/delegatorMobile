@@ -1,10 +1,10 @@
 import { formatDate } from '../helpers/format';
 import { abroadConsts as CONSTS } from '../reducers/consts';
 import { Alert } from 'react-native';
+import RNFetchBlob from 'react-native-fetch-blob'
 
 export const aSetStartDate = date => ({type: CONSTS.SET_START_DATE, payload: date});
 export const aSetEndDate = date => ({type: CONSTS.SET_END_DATE, payload: date});
-export const aSetSettlementDate = date => ({type: CONSTS.SET_SETTLEMENT_DATE, payload: date});
 export const aSetAccommodationDomestic = value => ({type: CONSTS.SET_ACCOMODATION, payload: value});
 export const aSetPublicTransportDomestic = value => ({type: CONSTS.SET_PUBLIC_TRANSPORT, payload: value});
 export const aSetBreakfastCountDomestic = value => ({type: CONSTS.SET_BREAKFAST_COUNT, payload: value});
@@ -33,6 +33,23 @@ export const aSetEmail = value => ({type: CONSTS.SET_EMAIL, payload: value});
 export const aSetCurrency = value => ({ type: CONSTS.SET_CURRENCY,  payload: value });
 export const aFetchingCurrency = value => ({ type: CONSTS.FETCHING_CURRENCY, payload: value });
 export const aGetUuid = value =>  ({type: CONSTS.SET_DELEGATION_UUID, payload: value});
+export const aSetSettlementMaxDate = date => ({type: CONSTS.SET_SETTLEMENT_MAX_DATE, payload: date});
+export const reset = value => ({type: CONSTS.RESET, payload: value});
+
+export function aSetSettlementDate (date) {
+    let newDate = new Date(date);
+    newDate = newDate.getFullYear() + '-' + ('0' + (newDate.getMonth() + 1)).slice(-2) + '-' + ('0' + newDate.getDate()).slice(-2)+ ' 23:59';
+    return {type: CONSTS.SET_SETTLEMENT_DATE, payload: newDate}
+}
+
+export function aSetEndAndSettlementMax (date) {
+    let maxDate = new Date(new Date(date).setDate(new Date(date).getDate() + 14));
+    maxDate = `${maxDate.getFullYear()}-${maxDate.getMonth() + 1}-${maxDate.getDate()} 23:59`;
+    return function (dispatch) {
+        dispatch(aSetEndDate(date));
+        dispatch(aSetSettlementMaxDate(maxDate));
+    }
+}
 
 export function sendData (data) {
   return async function (dispatch) {
@@ -47,6 +64,7 @@ export function sendData (data) {
         });
       let responseJson = await response.json();
       dispatch(aGetUuid(responseJson.uuid));
+      dispatch(reset(responseJson.uuid));
     } catch (error) {
       console.error(error);
     }
@@ -61,28 +79,13 @@ export function aUpdateCountry (country, date) {
     }
 }
 
-function handleErrors(response) {
-    if (!response.ok) {
-        throw Error(response.statusText);
-    }
-    return response;
-}
-
-export function fetchCurrency (country, date) {
-    return fetch(`https://delegator.oakfusion.pl/api/currencyExchange?country=${country}&date=${date}`, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        }
-    });
-}
-
 export function aGetCurrency (country, date) {
     return function (dispatch) {
-        return fetchCurrency(country, date)
-            .then(handleErrors)
-            .then(response => (dispatch(aSetCurrency(response._bodyText)), dispatch(aFetchingCurrency(false))))
+        return RNFetchBlob.fetch('GET', `https://delegator.oakfusion.pl/api/currencyExchange?country=${country}&date=${date}`, {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            })
+            .then(response => (dispatch(aSetCurrency(response.data)), dispatch(aFetchingCurrency(false))))
             .catch(error => (dispatch(aSetCurrency('')), dispatch(aFetchingCurrency(false))));
     }
 }

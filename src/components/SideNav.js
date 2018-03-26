@@ -1,10 +1,37 @@
 import React, {Component} from 'react';
 import {NavigationActions} from 'react-navigation';
 import { ScrollView, Text, View, StyleSheet, PixelRatio, TouchableOpacity, Alert, Linking } from 'react-native';
-
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
 import { moderateScale } from '../helpers/scaling';
+import styled from 'styled-components';
+
+
+const Container = styled.View`
+  flex: 1;
+`;
+
+const TopSection = styled.View`
+  padding-top: 60;
+  padding-bottom: 60;
+  background-color: lightgrey;
+`;
+
+const TopSectionText = styled.Text`
+  text-align: center;
+  font-weight: bold;
+  font-size: ${moderateScale(35)};
+`;
+
+const Footer = styled.View`
+  padding-vertical: 10;
+  padding-horizontal: 10;
+  background-Color: lightgrey;
+`;
+
+const FooterText = styled.Text`
+  text-align: center;
+  font-size: ${moderateScale(10)};
+`;
 
 const icons = [
   'flight', 'info', 'email', 'security'
@@ -28,11 +55,12 @@ class SideNav extends Component {
     const currentItem = this.props.activeItemKey;
 
     return (
-      <View style={styles.container}>
+      <Container>
         <ScrollView>
-          <View style={styles.topSection}>
-            <Text style={styles.topSectionText}>DELEGATOR</Text>
-          </View>
+          <TopSection>
+            <TopSectionText>DELEGATOR</TopSectionText>
+          </TopSection>
+
           <View>
             {this.props.items.map((item, key) => {
               return (
@@ -48,28 +76,15 @@ class SideNav extends Component {
           </View>
         </ScrollView>
 
-        <View style={styles.footerContainer}>
-          <Text style={styles.footerContainerText}>&copy; {new Date().getFullYear()} Oakfusion</Text>
-        </View>
-      </View>
+        <Footer>
+          <FooterText>&copy; {new Date().getFullYear()} Oakfusion</FooterText>
+        </Footer>
+      </Container>
     );
   }
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1
-    },
-    topSection: {
-      paddingTop: 60,
-      paddingBottom: 60,
-      backgroundColor: 'lightgrey'
-    },
-    topSectionText: {
-      textAlign: 'center',
-      fontWeight: 'bold',
-      fontSize: moderateScale(35)
-    },
     navItemStyle: {
       flex: 1,
       padding: 10,
@@ -85,14 +100,6 @@ const styles = StyleSheet.create({
     },
     navItemActiveButton: {
       backgroundColor: '#555'
-    },
-    footerContainer: {
-      padding: 10,
-      backgroundColor: 'lightgrey'
-    },
-    footerContainerText: {
-      textAlign: 'center',
-      fontSize: moderateScale(10)
     }
 });
 

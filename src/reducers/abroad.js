@@ -9,6 +9,7 @@ const initialState = {
   aDinnerCountDomestic              : '',
   aSupperCountDomestic              : '',
   aSettlementDate                   : '',
+  aSettlementMaxDate                : '',
   aName                             : '',
   aSurname                          : '',
   aPosition                         : '',
@@ -68,6 +69,8 @@ export default function abroadState(state = initialState, action) {
     case CONSTS.SET_CURRENCY:                      return { ...state, aCurrency: action.payload }
     case CONSTS.FETCHING_CURRENCY:                 return { ...state, aFetchingCurrency: action.payload }
     case CONSTS.SET_DELEGATION_UUID:               return { ...state, aUuid: action.payload }
+    case CONSTS.SET_SETTLEMENT_MAX_DATE:           return { ...state, aSettlementMaxDate: action.payload }
+    case CONSTS.RESET:                             return { ...initialState, aUuid: action.payload }
     
     default: return state;
   }

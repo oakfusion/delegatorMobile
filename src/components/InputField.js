@@ -9,7 +9,7 @@ const defaultInputProps = {
     textColor: "#fff",
     tintColor: "#ffab40",
     labelHeight: 20,
-    errorColor: '#ef5350'
+    errorColor: '#ef5350',
 }
 
 export default class InputField extends Component {
@@ -32,15 +32,24 @@ export default class InputField extends Component {
          }
     }
 
+    focus () {
+        this.input.focus();
+    }
+
     render () {
         return (
             <TextField {...defaultInputProps}
+                ref={input => this.input = input}
+                blurOnSubmit={ this.props.onSubmitEditing ? false : true }
                 disabled={this.props.disabled}
                 label={this.props.label} 
                 value={this.props.value} 
                 error={this.state.error}
+                returnKeyType= {this.props.returnKeyType || "next"}
                 onChangeText={ value => this.props.handleChange(value) } 
                 onBlur={() => this.validate()}
+                onFocus={event => this.props.onFocus ? this.props.onFocus(event) : null}
+                onSubmitEditing={() => this.props.onSubmitEditing ? this.props.onSubmitEditing() : null}
             />
         )
     }

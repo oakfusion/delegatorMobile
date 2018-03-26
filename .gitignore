@@ -30,6 +30,9 @@ build/
 local.properties
 *.iml
 
+/android/delegator.keystore
+/android/gradle.properties
+
 # node.js
 #
 node_modules/
