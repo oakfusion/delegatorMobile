@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableNativeFeedback, Image, PixelRatio, ScrollView } from 'react-native';
+import { Text, View, TouchableNativeFeedback, Image, PixelRatio, ScrollView, Dimensions } from 'react-native';
 import { moderateScale, verticalScale } from '../helpers/scaling';
 import styled from 'styled-components';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -36,8 +36,8 @@ const ButtonsContainer = styled.View`
 
 const ImageIcon = styled.Image`
     flex: 1;
-    width: ${PixelRatio.getPixelSizeForLayoutSize(20)};
-    height: ${PixelRatio.getPixelSizeForLayoutSize(20)};
+    width: ${Dimensions.get('window').width / 6};
+    height: ${Dimensions.get('window').width / 6};
     resize-mode: contain;
 `;
 

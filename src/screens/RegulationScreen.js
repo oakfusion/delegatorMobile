@@ -51,7 +51,7 @@ const BoldText = RegularText.extend`
 `;
 
 const ListItemNumber = RegularText.extend`
-  width: ${PixelRatio.getPixelSizeForLayoutSize(10)};
+  width: 30;
   text-align: right;
   padding-right: 5;
 `;

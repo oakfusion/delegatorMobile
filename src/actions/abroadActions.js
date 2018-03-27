@@ -35,12 +35,7 @@ export const aFetchingCurrency = value => ({ type: CONSTS.FETCHING_CURRENCY, pay
 export const aGetUuid = value =>  ({type: CONSTS.SET_DELEGATION_UUID, payload: value});
 export const aSetSettlementMaxDate = date => ({type: CONSTS.SET_SETTLEMENT_MAX_DATE, payload: date});
 export const reset = value => ({type: CONSTS.RESET, payload: value});
-
-export function aSetSettlementDate (date) {
-    let newDate = new Date(date);
-    newDate = newDate.getFullYear() + '-' + ('0' + (newDate.getMonth() + 1)).slice(-2) + '-' + ('0' + newDate.getDate()).slice(-2)+ ' 23:59';
-    return {type: CONSTS.SET_SETTLEMENT_DATE, payload: newDate}
-}
+export const aSetSettlementDate = date => ({type: CONSTS.SET_SETTLEMENT_DATE, payload: date});
 
 export function aSetEndAndSettlementMax (date) {
     let maxDate = new Date(new Date(date).setDate(new Date(date).getDate() + 14));
@@ -48,6 +43,20 @@ export function aSetEndAndSettlementMax (date) {
     return function (dispatch) {
         dispatch(aSetEndDate(date));
         dispatch(aSetSettlementMaxDate(maxDate));
+    }
+}
+
+export function aUpdateSettlementDate (date, country) {
+    let newDate = new Date(date);
+    newDate = newDate.getFullYear() + '-' + ('0' + (newDate.getMonth() + 1)).slice(-2) + '-' + ('0' + newDate.getDate()).slice(-2)+ ' 23:59';
+    return function (dispatch) {
+        if (country) {
+            dispatch(aSetSettlementDate(newDate));
+            dispatch(aFetchingCurrency(true));
+            dispatch(aGetCurrency(country, formatDate(date)));
+        } else {
+            dispatch(aSetSettlementDate(newDate));
+        }
     }
 }
 

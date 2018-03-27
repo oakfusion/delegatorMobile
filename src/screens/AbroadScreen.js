@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView, ActivityIndicator } from 'react-native';
+import ReactNative, { View, ScrollView, ActivityIndicator, NetInfo } from 'react-native';
 import styled from 'styled-components';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -89,8 +89,14 @@ export default class AbroadScreen extends Component {
                 abroad:                           this.props.state.abroad                
             }
 
-            this.props.actions.sendData(data).then( () => {
-                this.props.navigation.navigate('Pdf', { uuid: this.props.state.aUuid }) 
+            NetInfo.isConnected.fetch().then(isConnected => {
+                if (isConnected) {
+                    this.props.actions.sendData(data).then( () => {
+                        this.props.navigation.navigate('Pdf', { uuid: this.props.state.aUuid }) 
+                    });
+                } else {
+                    Alert.alert('Problem z siecią', 'Nie masz połączenia z siecią')
+                }
             });
         }
     }
@@ -158,7 +164,7 @@ export default class AbroadScreen extends Component {
                                 mode="date" 
                                 min={state.aEndDate} 
                                 max={state.aSettlementMaxDate} 
-                                handleChange={actions.aSetSettlementDate} 
+                                handleChange={date => actions.aUpdateSettlementDate(date, state.aCountry)} 
                                 placeholder="Wybierz datę"
                             />
                         </FieldHolder>
@@ -206,6 +212,8 @@ export default class AbroadScreen extends Component {
                                 value={state.aEmail}
                                 error="Nie może być puste" 
                                 handleChange={ value => actions.aSetEmail(value) }
+                                onSubmitEditing={() => (this.refs.name.focus(), ReactNative.findNodeHandle(this.refs.name))}
+                                onFocus={event => this.scrollToInput(event.target)}
                             />
                         </FieldHolder>
 
@@ -216,6 +224,8 @@ export default class AbroadScreen extends Component {
                                 value={state.aName} 
                                 error="Nie może być puste"
                                 handleChange={ value => actions.aSetName(value) }
+                                onSubmitEditing={() => (this.refs.surname.focus(), ReactNative.findNodeHandle(this.refs.surname))}
+                                onFocus={event => this.scrollToInput(event.target)}
                             />
                         </FieldHolder>
 
@@ -226,6 +236,8 @@ export default class AbroadScreen extends Component {
                                 value={state.aSurname} 
                                 error="Nie może być puste"
                                 handleChange={ value => actions.aSetSurname(value) }
+                                onSubmitEditing={() => (this.refs.position.focus(), ReactNative.findNodeHandle(this.refs.position))}
+                                onFocus={event => this.scrollToInput(event.target)}
                             />
                         </FieldHolder>
 
@@ -236,6 +248,7 @@ export default class AbroadScreen extends Component {
                                 value={state.aPosition} 
                                 error="Nie może być puste"
                                 handleChange={ value => actions.aSetPosition(value) }
+                                onFocus={event => this.scrollToInput(event.target)}
                             />
                         </FieldHolder>
 
