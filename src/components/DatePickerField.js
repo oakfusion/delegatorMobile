@@ -97,7 +97,9 @@ export default class DatePickerField extends Component {
 					}}
 					onDateChange={this.props.handleChange}
 				/>
-				{!!this.props.min && this.props.date < this.props.min ? <Text style={{color: errorColor, fontSize: 12, paddingTop: 5}}>Nieprawidlowa kolejnosc dat</Text> : null}
+				{!!this.props.min && this.props.date && this.props.date < this.props.min 
+					? <Text style={{color: errorColor, fontSize: 12, paddingTop: 5}}>Nieprawidłowa kolejność dat</Text> 
+					: null}
 			</Container>
 		)
 	}

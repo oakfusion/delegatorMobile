@@ -11,6 +11,7 @@ import CheckBoxField from '../components/CheckBoxField';
 import InputField from '../components/InputField';
 
 import { formatDate, formatDateTime } from '../helpers/format';
+import networkCheck from '../helpers/network';
 
 import Button from '../components/Button';
 import DomesticMore from '../modals/DomesticMore';
@@ -74,15 +75,11 @@ export default class DomesticScreen extends Component {
                 abroad:                     this.props.state.abroad
             }
 
-            NetInfo.isConnected.fetch().then(isConnected => {
-                if (isConnected) {
-                    this.props.actions.sendData(data).then( () => {
-                        this.props.navigation.navigate('Pdf', { uuid: this.props.state.dUuid });
-                    });
-                } else {
-                    Alert.alert('Problem z siecią', 'Nie masz połączenia z siecią')
-                }
-            }); 
+            networkCheck(() => {
+                this.props.actions.sendData(data).then( () => {
+                    this.props.navigation.navigate('Pdf', { uuid: this.props.state.dUuid });
+                });
+            })
         }
     }
 
@@ -211,7 +208,7 @@ export default class DomesticScreen extends Component {
                                 labelStyle={{color: '#fff'}}
                                 checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
                                 uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
-                                onChange={ value => actions.dSetAlimentationProvided(value.checked)}
+                                onChange={ value => actions.dSetAlimentationProvided(value)}
                                 checked={state.dAlimentationProvided}
                             />
                         </FieldHolder>
@@ -219,10 +216,7 @@ export default class DomesticScreen extends Component {
                         <FieldHolder small>
                             <CheckBoxField
                                 label='Zapewniony nocleg?'
-                                labelStyle={{color: '#fff'}}
-                                checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
-                                uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
-                                onChange={ value => actions.dSetAccomodationProvided(value.checked)}
+                                onChange={ value => actions.dSetAccomodationProvided(value)}
                                 checked={state.dAccommodationProvided}
                             />
                         </FieldHolder>
@@ -232,10 +226,7 @@ export default class DomesticScreen extends Component {
                                 required
                                 ref='regulation'
                                 label='Zapoznałem się i akceptuję regulamin*'
-                                checkedComponent={<Icon name="checkbox-marked" size={22} color="#ffab40"/>}
-                                uncheckedComponent={<Icon name="checkbox-blank-outline" size={22} color="#c9c9c9"/>}
-                                uncheckedComponentError={<Icon name="checkbox-blank-outline" size={22} color="#ef5350"/>}
-                                onChange={ value => (actions.dSetRegulaminAccept(value.checked))}
+                                onChange={ value => actions.dSetRegulaminAccept(value)}
                                 checked={state.dRegulaminAccepted}
                             />
                         </FieldHolder>

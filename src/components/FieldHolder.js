@@ -20,17 +20,13 @@ const Placeholder = styled.Text`
   font-size: 12;
 `;
 
-class FieldHolder extends Component {
-  render () {
-    return (
-      <Container {...this.props}>
-        <ContainerInner {...this.props}>
-          <Placeholder>{this.props.placeholder}</Placeholder>
-          {this.props.children}
-        </ContainerInner>
-      </Container>
-    )
-  }
+export default FieldHolder = (props) => {
+  return (
+    <Container {...props}>
+      <ContainerInner {...props}>
+        <Placeholder>{props.placeholder}</Placeholder>
+        {props.children}
+      </ContainerInner>
+    </Container>
+  )
 }
-
-export default FieldHolder;

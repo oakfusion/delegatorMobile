@@ -1,27 +1,47 @@
 import React from 'react';
-import { StyleSheet, Dimensions, View, TouchableNativeFeedback, TouchableOpacity, Platform, Alert } from 'react-native';
+import { StyleSheet, Dimensions, View, TouchableNativeFeedback, TouchableOpacity, Platform, Alert, Linking } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Pdf from 'react-native-pdf';
 import RNFetchBlob from 'react-native-fetch-blob'
+import networkCheck from '../helpers/network';
+import styled from 'styled-components';
+import DrawerButton from '../components/DrawerButton';
 
 
 const Touchable = Platform.OS === 'android' ? TouchableNativeFeedback : TouchableOpacity;
 
 const url = 'https://delegator.oakfusion.pl/report/print?uuid=';
 
+const Container = styled.View`
+    flex: 1;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 25;
+`;
+
+const ButtonWrapper = styled.View`
+    padding-horizontal: 15;
+    padding-vertical: 15;
+`;
+
 function downloadFile (src) {
-    return new Promise((resolve, reject) => {
-        RNFetchBlob
-        .fetch('GET', src)
-        .then( res => {
-            let base64Str = res.data;
-            let pdfLocation = `storage/sdcard0/delegations/delegation-${new Date().toISOString()}.pdf`;
-            RNFetchBlob.fs.writeFile(pdfLocation, base64Str, 'base64');
-            alert('Raport zapisany w ' + pdfLocation);
-            resolve(pdfLocation);
-        })
-    }).catch((error) => {
-        console.log("Error", error)
+    networkCheck(() => {
+        return new Promise((resolve, reject) => {
+            RNFetchBlob
+            .fetch('GET', src)
+            .then( res => {
+                let base64Str = res.data;
+                let pdfLocation = `storage/sdcard0/delegations/delegation-pdf.pdf`;
+                RNFetchBlob.fs.writeFile(pdfLocation, base64Str, 'base64');
+                Alert.alert(
+                    'Raport został zapisany', 
+                    'Raport zapisany w ' + pdfLocation
+                );
+                resolve(pdfLocation);
+            })
+        }).catch((error) => {
+            console.log("Error", error)
+        });
     });
 }
 
@@ -39,35 +59,28 @@ export default class PDFScreen extends React.Component {
         return {
             headerRight: (
                 <Touchable onPress={() => downloadFile(`${url}${params.uuid}`)} background={TouchableNativeFeedback.Ripple('rgba(0, 0, 0, .32)', true)}>
-                    <View style={{padding: 15}}>
+                    <ButtonWrapper>
                         <Icon name="file-download" size={25} color="#fff" />
-                    </View>
+                    </ButtonWrapper>
                 </Touchable>
             ),
         }
       };
 
     render() {
-
         const source = {uri: this.state.link, cache:true};
  
         return (
-            <View style={styles.container}>
+            <Container>
                 <Pdf source={source} style={styles.pdf}/>
-            </View>
+            </Container>
         )
-  }
+    }
 }
- 
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        marginTop: 25,
-    },
     pdf: {
-        flex:1,
-        width:Dimensions.get('window').width,
+        flex: 1,
+        width: Dimensions.get('window').width,
     }
 });

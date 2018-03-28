@@ -43,7 +43,7 @@ export default function abroadState(state = initialState, action) {
     case CONSTS.SET_SETTLEMENT_DATE:               return { ...state, aSettlementDate: action.payload }
     case CONSTS.SET_ACCOMODATION:                  return { ...state, aAccommodationDomestic: action.payload }
     case CONSTS.SET_PUBLIC_TRANSPORT:              return { ...state, aPublicTransportDomestic: action.payload }
-    case CONSTS.SET_BREAKFAST_COUNR:               return { ...state, aBreakfastCountDomestic: action.payload }
+    case CONSTS.SET_BREAKFAST_COUNT:               return { ...state, aBreakfastCountDomestic: action.payload }
     case CONSTS.SET_DINNER_COUNT:                  return { ...state, aDinnerCountDomestic: action.payload }
     case CONSTS.SET_SUPPER_COUNT:                  return { ...state, aSupperCountDomestic: action.payload }
     case CONSTS.SET_NAME:                          return { ...state, aName: action.payload }

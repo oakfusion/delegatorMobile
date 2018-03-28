@@ -45,7 +45,8 @@ export default class InputField extends Component {
                 label={this.props.label} 
                 value={this.props.value} 
                 error={this.state.error}
-                returnKeyType= {this.props.returnKeyType || "next"}
+                returnKeyType={this.props.returnKeyType || "next"}
+                keyboardType={this.props.keyboardType || "default"}
                 onChangeText={ value => this.props.handleChange(value) } 
                 onBlur={() => this.validate()}
                 onFocus={event => this.props.onFocus ? this.props.onFocus(event) : null}

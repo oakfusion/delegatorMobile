@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Text, Modal, View, ScrollView } from 'react-native';
+import ReactNative, { Text, Modal, View, ScrollView } from 'react-native';
 import styled from 'styled-components';
 import Button from '../components/Button';
 import FieldHolder from '../components/FieldHolder';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 const Container = styled.View`
     flex: 1;
@@ -14,15 +15,25 @@ const ContainerInner = styled.View`
     padding-horizontal: 15;
 `;
 
-export default MoreModal = (props) => (
-    <Modal visible={props.visibility} animationType={'slide'} onRequestClose={() => props.handleClose()}>
-        <Container>
-            <ScrollView>
-                {props.children}
-                <FieldHolder>
-                    <Button onPress={() => props.handleClose()} title="Zapisz" />
-                </FieldHolder>
-            </ScrollView>
-        </Container>
-    </Modal>
-);
+export default class MoreModal extends Component {
+    scrollToInput (input) {
+        this.scroll.props.scrollToFocusedInput(ReactNative.findNodeHandle(input) + 10)
+    }
+
+    render () {
+        return (
+            <Modal visible={this.props.visibility} animationType={'slide'} onRequestClose={() => this.props.handleClose()}>
+                <Container>
+                    <KeyboardAwareScrollView innerRef={ref => {this.scroll = ref}}>
+                        <View>
+                            {this.props.children}
+                            <FieldHolder>
+                                <Button onPress={() => this.props.handleClose()} title="Zapisz" />
+                            </FieldHolder>
+                        </View>
+                    </KeyboardAwareScrollView>
+                </Container>
+            </Modal>
+        );
+    }
+}

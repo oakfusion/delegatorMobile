@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import CheckBox from 'react-native-modest-checkbox';
-import { View } from 'react-native';
+import { View, Switch, Text } from 'react-native';
 import styled from 'styled-components';
 
+
 const Container = styled.View`
-  width: 100%;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flexDirection: row;
 `;
 
 const errorColor = '#ef5350';
@@ -14,29 +17,27 @@ export default class CheckBoxField extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            style: {color: regularColor},
-            uncheckedComponentError: this.props.uncheckedComponent
+            color: regularColor
         }
     }
 
     makeWrong () {
         this.setState({
-            style: {color: errorColor},
-            uncheckedComponentError: this.props.uncheckedComponentError
+            color: errorColor
         });
     }
 
     makeRight () {
         this.setState({
-            style: {color: regularColor},
-            uncheckedComponentError: this.props.uncheckedComponent
+            color: regularColor
         });
     }
 
     componentWillReceiveProps (nextProps) {
         if (nextProps.checked) {
-            this.makeRight()
+            this.makeRight();
         }
+        this.forceUpdate();
     }
 
     validate () {
@@ -54,14 +55,13 @@ export default class CheckBoxField extends Component {
     render () {
         return (
             <Container>
-                <CheckBox
-                    label={this.props.label}
-                    labelStyle={this.state.style}
-                    checkedComponent={this.props.checkedComponent}
-                    uncheckedComponent={this.state.uncheckedComponentError}
-                    onChange={this.props.onChange}
-                    checked={this.props.checked}
+                <Switch
+                    onValueChange={this.props.onChange}
+                    onTintColor='#d28f3b'
+                    thumbTintColor={this.props.checked ? '#ffab40' : null}
+                    value={this.props.checked}
                 />
+                <Text style={{color: this.state.color, paddingLeft: 7, fontSize: 16}}>{this.props.label}</Text>
             </Container>
         )
     }

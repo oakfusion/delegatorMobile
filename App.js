@@ -43,12 +43,6 @@ const AboutStack = StackNavigator(
   }
 )
 
-const ContactStack = StackNavigator(
-  { 
-    Contact: { screen: ContactScreen, navigationOptions: ({navigation}) => StackOptionsFunc(navigation) }
-  }
-)
-
 const RegulationStack = StackNavigator(
   { 
     Regulation:    { screen: RegulationScreen, navigationOptions: ({navigation}) => StackOptionsFunc(navigation) }
@@ -59,7 +53,7 @@ export default DrawerNavigator(
   {
     'Rozliczenie delegacji' : { screen: MainStack },
     'O Aplikacji'           : { screen: AboutStack },
-    'Kontakt'               : { screen: ContactStack },
+    'Kontakt'               : { screen: ContactScreen },
     'Regulamin'             : { screen: RegulationStack }
   },{ 
     contentComponent: SideNav,

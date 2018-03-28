@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactNative, { View, ScrollView, ActivityIndicator, NetInfo } from 'react-native';
+import ReactNative, { View, ScrollView, ActivityIndicator, NetInfo, Alert } from 'react-native';
 import styled from 'styled-components';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -15,6 +15,7 @@ import AbroadMoreDomestic from '../modals/AbroadMoreDomestic';
 import AbroadMoreAbroad from '../modals/AbroadMoreAbroad';
 import * as data from '../data.json';
 import { formatDate, formatDateTime } from '../helpers/format';
+import networkCheck from '../helpers/network';
 
 const Container = styled.View`
     flex: 1;
@@ -89,14 +90,10 @@ export default class AbroadScreen extends Component {
                 abroad:                           this.props.state.abroad                
             }
 
-            NetInfo.isConnected.fetch().then(isConnected => {
-                if (isConnected) {
-                    this.props.actions.sendData(data).then( () => {
-                        this.props.navigation.navigate('Pdf', { uuid: this.props.state.aUuid }) 
-                    });
-                } else {
-                    Alert.alert('Problem z siecią', 'Nie masz połączenia z siecią')
-                }
+            networkCheck(() => {
+                this.props.actions.sendData(data).then( () => {
+                    this.props.navigation.navigate('Pdf', { uuid: this.props.state.aUuid }) 
+                });
             });
         }
     }

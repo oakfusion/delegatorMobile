@@ -1,7 +1,8 @@
 import { formatDate } from '../helpers/format';
 import { abroadConsts as CONSTS } from '../reducers/consts';
-import { Alert } from 'react-native';
-import RNFetchBlob from 'react-native-fetch-blob'
+import { Alert, Linking } from 'react-native';
+import RNFetchBlob from 'react-native-fetch-blob';
+import networkCheck from '../helpers/network';
 
 export const aSetStartDate = date => ({type: CONSTS.SET_START_DATE, payload: date});
 export const aSetEndDate = date => ({type: CONSTS.SET_END_DATE, payload: date});
@@ -90,11 +91,25 @@ export function aUpdateCountry (country, date) {
 
 export function aGetCurrency (country, date) {
     return function (dispatch) {
-        return RNFetchBlob.fetch('GET', `https://delegator.oakfusion.pl/api/currencyExchange?country=${country}&date=${date}`, {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-            })
-            .then(response => (dispatch(aSetCurrency(response.data)), dispatch(aFetchingCurrency(false))))
-            .catch(error => (dispatch(aSetCurrency('')), dispatch(aFetchingCurrency(false))));
+        networkCheck(() => {
+            return RNFetchBlob.fetch('GET', `https://delegator.oakfusion.pl/api/currencyExchange?country=${country}&date=${date}`)
+            .then(response => (dispatch(aSetCurrency(JSON.parse(response.data)['rate'])), dispatch(aFetchingCurrency(false))))
+            .catch(error => (
+                dispatch(aSetCurrency('')), 
+                dispatch(aFetchingCurrency(false)), 
+                Alert.alert(
+                    'Problem z serwerem', 
+                    'Wystąpił probłem po stornie serwera, skontaktuj się z administracją Delegatora lub srobój później',
+                    [
+                        {text: 'Cancel', onPress: () => {}, style: 'cancel'},
+                        {text: 'Kontakt', onPress: () => Linking.openURL(`mailto:office@oakfusion.pl?subject=DelegatorHasBeenCrushed&body=${error}`)},
+                    ],
+                    { cancelable: false }
+                )
+            ));
+        }, () => {
+            dispatch(aSetCurrency(''));
+            dispatch(aFetchingCurrency(false));
+        });
     }
 }
