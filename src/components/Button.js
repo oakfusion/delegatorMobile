@@ -9,7 +9,6 @@ const ButtonArea = styled(Touchable)`
 `;
 
 const ButtonAreaInner = styled.View`
-    flex: 1;
     padding-horizontal: 10;
     padding-vertical: 10;
     background-color: ${props => props.dark ? '#3b3a3e' : '#fff'};
